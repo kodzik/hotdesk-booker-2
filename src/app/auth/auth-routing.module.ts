@@ -12,8 +12,8 @@ const routes: Routes = [
     children: [
       { path: 'sign-in', component: SignInComponent },
       { path: 'sign-up', component: SignUpComponent },
-      { path: 'test', component: FirebaseTestComponent },
-      { path: '**', redirectTo: 'test' }, //, pathMatch: 'full'
+      // { path: 'test', component: FirebaseTestComponent },
+      { path: '**', redirectTo: 'sign-in' }, //, pathMatch: 'full'
       // { path: 'verify-email', component: VerifyEmailComponent },
       // { path: 'forgot-password', component: ForgotPasswordComponent },
     ],

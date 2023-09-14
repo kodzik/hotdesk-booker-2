@@ -4,7 +4,7 @@ import {
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
-// import { AuthService } from 'src/app/_services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -18,8 +18,8 @@ export class SignInComponent implements OnInit {
   form: UntypedFormGroup = new UntypedFormGroup({});
 
   constructor(
-    // public authService: AuthService,
-    private formBuilder: UntypedFormBuilder
+    private formBuilder: UntypedFormBuilder,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +34,7 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit() {
+    this._router.navigate(['live']);
     this.submitted = true;
     this.loading = true;
     // stop here if form is invalid
