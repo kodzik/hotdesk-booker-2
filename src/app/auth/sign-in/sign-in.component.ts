@@ -34,7 +34,7 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit() {
-    this._router.navigate(['live']);
+    this._router.navigate(['/booker']);
     this.submitted = true;
     this.loading = true;
     // stop here if form is invalid

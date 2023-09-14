@@ -13,7 +13,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     StoreModule.forRoot({}, {}),
   ],
