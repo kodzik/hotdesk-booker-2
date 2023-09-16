@@ -1,18 +1,8 @@
 import { Component } from '@angular/core';
-import {
-  Firestore,
-  GeoPoint,
-  collection,
-  collectionData,
-} from '@angular/fire/firestore';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-
-export interface Desk {
-  available: boolean;
-  name: string;
-  reserved: boolean;
-  bounds?: GeoPoint;
-}
+import * as actions from '../store/resource-list.actions';
+import * as fromResourceList from '../store/resource-list.reducer';
 
 @Component({
   selector: 'app-resource-list',
@@ -20,13 +10,10 @@ export interface Desk {
   styleUrls: ['./resource-list.component.scss'],
 })
 export class ResourceListComponent {
-  desks$: Observable<any>;
+  resources$: Observable<any>;
 
-  constructor(private firestore: Firestore) {
-    const userProfileCollection = collection(
-      this.firestore,
-      '/location/H786qVsMedStm2TIAmky/rooms/CnAdCOxVovPqW52nJieN/desks'
-    );
-    this.desks$ = collectionData(userProfileCollection) as Observable<Desk[]>;
+  constructor(private store: Store) {
+    this.resources$ = this.store.select(fromResourceList.selectAll);
+    this.store.dispatch(actions.queryResources());
   }
 }

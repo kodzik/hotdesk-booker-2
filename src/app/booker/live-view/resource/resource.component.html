@@ -1,6 +1,6 @@
 <div
   class="resource-container"
-  ngClass="{ 'resource-available': resource.reserved }"
+  [ngClass]="{ 'resource-available': resource.reserved }"
 >
   <div>Name: {{ resource.name }}</div>
   <div *ngIf="resource.reserved">Available</div>

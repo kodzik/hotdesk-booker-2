@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Desk } from '../resource-list/resource-list.component';
+import { Resource } from 'src/app/_models/resource';
 
 @Component({
   selector: 'app-resource',
@@ -7,5 +7,5 @@ import { Desk } from '../resource-list/resource-list.component';
   styleUrls: ['./resource.component.scss'],
 })
 export class ResourceComponent {
-  @Input() resource: Desk;
+  @Input() resource: Resource;
 }
