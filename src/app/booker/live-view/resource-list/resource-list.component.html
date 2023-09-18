@@ -1,45 +1,50 @@
-<!-- <p-scrollPanel [style]="{ width: '100%', height: '150px' }">
-  <section>
-    <ul>
-      <div *ngFor="let resource of resources$ | async">
-        <app-resource [resource]="resource"></app-resource>
-      </div>
-    </ul>
-  </section>
-</p-scrollPanel> -->
-
-<p-orderList
-  [value]="products"
-  [listStyle]="{ 'max-height': '30rem' }"
-  header="Products"
-  filterBy="name"
-  filterPlaceholder="Filter by name"
+<p-table
+  #dt1
+  [value]="resources"
+  dataKey="name"
+  styleClass="p-datatable-sm"
+  [style]="{ height: '100%' }"
+  [tableStyle]="{ 'min-width': '30rem',  }"
+  [globalFilterFields]="['name', 'category']"
+  selectionMode="single"
 >
-  <ng-template let-product pTemplate="item">
-    <div class="flex align-items-center p-2 w-full flex-wrap">
-      <div class="w-full text-center lg:w-auto lg:text-left">
-        <img
-          src="https://primefaces.org/cdn/primeng/images/demo/product/{{
-            product.image
-          }}"
-          [alt]="product.name"
-          class="mr-3 shadow-3 w-7rem mb-3 lg:w-5rem lg:mb-auto"
+  >
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <span class="p-input-icon-left ml-auto">
+        <i class="pi pi-search"></i>
+        <input
+          #textInput
+          pInputText
+          type="text"
+          (input)="dt1.filterGlobal($event.target.value, 'contains')"
+          placeholder="Search keyword"
         />
-      </div>
-      <div class="flex-1">
-        <h5 class="mb-2">{{ product.name }}</h5>
-        <i class="pi pi-tag vertical-align-middle mr-2"></i>
-        <span class="vertical-align-middle line-height-1">{{
-          product.category
-        }}</span>
-      </div>
-      <div class="flex flex-column align-items-end">
-        <h6 class="mb-2">{{ "$ " + product.price }}</h6>
-        <p-tag
-          [value]="product.inventoryStatus"
-          [severity]="getSeverity(product.inventoryStatus)"
-        ></p-tag>
-      </div>
+      </span>
     </div>
   </ng-template>
-</p-orderList>
+
+  <ng-template pTemplate="body" let-product let-expanded="expanded">
+    <tr [pRowToggler]="product">
+      <td>{{ product.name }}</td>
+      <td>{{ product.category }}</td>
+      <td>
+        <p-tag
+          [value]="product.reserved ? 'available' : 'occupied'"
+          [severity]="getSeverity(product.reserved)"
+        ></p-tag>
+      </td>
+      <i [class]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="rowexpansion" let-product>
+    <tr>
+      <td colspan="7">
+        <div class="p-3">
+          <p-button [style]="{ height: '2rem' }">Quick book</p-button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

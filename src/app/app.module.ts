@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import * as fromApp from './store/app.reducer';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,13 +14,13 @@ import {
   AngularFirestore,
 } from '@angular/fire/compat/firestore';
 import { BookerModule } from './booker/booker.module';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NavbarComponent],
   imports: [
     AuthModule,
     AppRoutingModule,
-    BrowserModule,
     BookerModule,
     SharedModule,
     StoreModule.forRoot(fromApp.appReducer),

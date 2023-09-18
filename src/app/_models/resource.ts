@@ -6,6 +6,7 @@ export class Resource {
     public name: string,
     public available: boolean,
     public reserved: boolean,
-    public bounds?: GeoPoint
+    public bounds?: GeoPoint,
+    public category?: string
   ) {}
 }
