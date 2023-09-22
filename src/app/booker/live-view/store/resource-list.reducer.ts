@@ -10,7 +10,7 @@ export const initialState: State = resourcesAdapter.getInitialState();
 
 export const resourceListReducer = createReducer(
   initialState,
-  on(ResourceListActions.addResources, (state, action) => {
+  on(ResourceListActions.addResource, (state, action) => {
     return resourcesAdapter.addOne(action.payload, state);
   })
 );

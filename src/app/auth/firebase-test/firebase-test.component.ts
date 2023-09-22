@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, delay, map, of } from 'rxjs';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 
 export interface UserProfile {
@@ -14,10 +14,12 @@ export interface UserProfile {
 export class FirebaseTestComponent {
   users$: Observable<any>;
 
-  constructor(private firestore: Firestore) {
-    const userProfileCollection = collection(this.firestore, 'users');
-    this.users$ = collectionData(userProfileCollection) as Observable<
-      UserProfile[]
-    >;
+  constructor() {
+    // private firestore: Firestore
+    // const userProfileCollection = collection(this.firestore, 'users');
+    // this.users$ = collectionData(userProfileCollection) as Observable<
+    //   UserProfile[]
+    // >;
+    // this.users$ = this.getTestData();
   }
 }

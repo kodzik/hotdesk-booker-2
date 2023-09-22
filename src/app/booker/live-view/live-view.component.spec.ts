@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LiveViewComponent } from './live-view.component';
+import { ResourceListComponent } from './resource-list/resource-list.component';
+import { StoreModule } from '@ngrx/store';
+import * as fromApp from '../../store/app.reducer';
+import { TableModule } from 'primeng/table';
 
 describe('LiveViewComponent', () => {
   let component: LiveViewComponent;
@@ -8,9 +12,9 @@ describe('LiveViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LiveViewComponent ]
-    })
-    .compileComponents();
+      imports: [StoreModule.forRoot(fromApp.appReducer), TableModule],
+      declarations: [LiveViewComponent, ResourceListComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LiveViewComponent);
     component = fixture.componentInstance;

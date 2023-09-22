@@ -17,28 +17,28 @@
           #textInput
           pInputText
           type="text"
-          (input)="dt1.filterGlobal($event.target.value, 'contains')"
+          (input)="dt1.filterGlobal($any($event.target).value, 'contains')"
           placeholder="Search keyword"
         />
       </span>
     </div>
   </ng-template>
 
-  <ng-template pTemplate="body" let-product let-expanded="expanded">
-    <tr [pRowToggler]="product">
-      <td>{{ product.name }}</td>
-      <td>{{ product.category }}</td>
+  <ng-template pTemplate="body" let-resource let-expanded="expanded">
+    <tr [pRowToggler]="resource">
+      <td>{{ resource.name }}</td>
+      <td>{{ resource.category }}</td>
       <td>
         <p-tag
-          [value]="product.reserved ? 'available' : 'occupied'"
-          [severity]="getSeverity(product.reserved)"
+          [value]="resource.reserved ? 'available' : 'occupied'"
+          [severity]="resource.reserved ? 'success' : 'danger'"
         ></p-tag>
       </td>
       <i [class]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
     </tr>
   </ng-template>
 
-  <ng-template pTemplate="rowexpansion" let-product>
+  <ng-template pTemplate="rowexpansion" let-resource>
     <tr>
       <td colspan="7">
         <div class="p-3">

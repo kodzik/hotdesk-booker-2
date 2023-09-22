@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SignInComponent } from './sign-in.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
 
 describe('SignInComponent', () => {
   let component: SignInComponent;
@@ -8,9 +10,9 @@ describe('SignInComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SignInComponent ]
-    })
-    .compileComponents();
+      imports: [ReactiveFormsModule, ButtonModule],
+      declarations: [SignInComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SignInComponent);
     component = fixture.componentInstance;

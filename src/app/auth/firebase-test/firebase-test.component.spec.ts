@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { FirebaseTestComponent } from './firebase-test.component';
 
 describe('FirebaseTestComponent', () => {
@@ -8,9 +7,8 @@ describe('FirebaseTestComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FirebaseTestComponent ]
-    })
-    .compileComponents();
+      declarations: [FirebaseTestComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FirebaseTestComponent);
     component = fixture.componentInstance;
