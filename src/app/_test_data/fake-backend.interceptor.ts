@@ -9,7 +9,7 @@ import {
 } from '@angular/common/http';
 import { Observable, of, throwError, map } from 'rxjs';
 import { delay, materialize, dematerialize } from 'rxjs/operators';
-import * as test_resources from '../_test_data/test_resources';
+import * as test_resources from './fake-backend-resources';
 import { Resource } from '../_models/resource';
 
 // array in local storage for registered users

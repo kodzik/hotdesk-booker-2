@@ -1,6 +1,6 @@
 <p-table
   #dt1
-  [value]="resources"
+  [value]="resources$ | async"
   dataKey="name"
   styleClass="p-datatable-sm"
   [style]="{ height: '100%' }"

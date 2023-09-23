@@ -12,15 +12,9 @@ import { Resource } from 'src/app/_models/resource';
 })
 export class ResourceListComponent {
   resources$: Observable<Resource[]>;
-  resources: Resource[];
 
   constructor(private store: Store) {
     this.resources$ = this.store.select(fromResourceList.selectAll);
-
     this.store.dispatch(actions.queryResources());
-
-    this.resources$.subscribe((resource) => {
-      this.resources = [...resource];
-    });
   }
 }
