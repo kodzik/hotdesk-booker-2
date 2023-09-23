@@ -1,5 +1,5 @@
 import { Resource } from 'src/app/_models/resource';
-import { addResources } from './resource-list.actions';
+import { addResources } from '../actions/resource-list.actions';
 import {
   initialState,
   resourceListReducer,

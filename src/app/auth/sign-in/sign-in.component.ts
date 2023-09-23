@@ -33,20 +33,20 @@ export class SignInComponent implements OnInit {
     return this.form.controls;
   }
 
-  onSubmit() {
-    this._router.navigate(['/booker']);
-    this.submitted = true;
-    this.loading = true;
-    // stop here if form is invalid
-    if (this.form.invalid) {
-      this.loading = false;
-      return;
-    }
-    // this.authService
-    //   .SignIn(this.f.email.value, this.f.password.value)
-    //   .catch((error) => {
-    //     this.error = this.authService.errorHandler(error);
-    //     this.loading = false;
-    //   });
-  }
+  // onSubmit() {
+  // this._router.navigate(['/booker']);
+  // this.submitted = true;
+  // this.loading = true;
+  // // stop here if form is invalid
+  // if (this.form.invalid) {
+  //   this.loading = false;
+  //   return;
+  // }
+  // this.authService
+  //   .SignIn(this.f.email.value, this.f.password.value)
+  //   .catch((error) => {
+  //     this.error = this.authService.errorHandler(error);
+  //     this.loading = false;
+  //   });
+  // }
 }

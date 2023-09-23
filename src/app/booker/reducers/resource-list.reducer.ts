@@ -1,6 +1,6 @@
 import { createFeatureSelector, createReducer, on } from '@ngrx/store';
 import { Resource } from 'src/app/_models/resource';
-import * as ResourceListActions from './resource-list.actions';
+import * as ResourceListActions from '../actions/resource-list.actions';
 import { createEntityAdapter } from '@ngrx/entity';
 import { EntityState } from '@ngrx/entity/src';
 

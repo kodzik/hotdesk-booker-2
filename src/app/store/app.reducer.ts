@@ -1,5 +1,5 @@
 import { ActionReducerMap } from '@ngrx/store';
-import * as fromResourceList from '../booker/live-view/store/resource-list.reducer';
+import * as fromResourceList from '../booker/reducers/resource-list.reducer';
 
 // export interface AppState {
 //   resourceList: fromResourceList.resourceState;

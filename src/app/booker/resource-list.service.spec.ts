@@ -1,33 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ResourceListService } from './resource-list.service';
-import { Resource } from 'src/app/_models/resource';
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
 import { GeoPoint } from '@angular/fire/firestore';
+import { mockResources } from 'src/app/_test_data/mock_data';
+import { cold } from 'jasmine-marbles';
 
 describe('ResourceListService', () => {
   let service: ResourceListService;
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
-
-  const mockResources: Resource[] = [
-    {
-      id: 'test_id_1',
-      name: 'test_name_1',
-      category: 'workspace',
-      available: false,
-      reserved: false,
-      bounds: new GeoPoint(11, 22),
-    },
-    {
-      id: 'test_id_2',
-      name: 'test_name_2',
-      category: 'workspace',
-      available: false,
-      reserved: false,
-      bounds: new GeoPoint(33, 44),
-    },
-  ];
+  let http: HttpClient;
 
   const newMockService = jasmine.createSpyObj<ResourceListService>({
     getResources: of(mockResources),
@@ -39,13 +22,30 @@ describe('ResourceListService', () => {
 
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [{ provide: ResourceListService, useValue: newMockService }],
+      providers: [
+        { provide: ResourceListService, useValue: newMockService },
+        {
+          provide: HttpClient,
+          useValue: jasmine.createSpyObj('ResourceListService', [
+            'getResources',
+          ]),
+        },
+      ],
     });
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  // it('should call the search api and return the search results', () => {
+  //   const response = cold('-a|', { a: mockResources });
+  //   const expected = cold('-b|', { b: mockResources });
+  //   http.get = jasmine.createSpyObj(response).and.returnValue();
+
+  //   expect(service.getResources()).toBeObservable(expected);
+  //   expect(http.get).toHaveBeenCalledWith('/resources');
+  // });
 
   it('should get resources', () => {
     const resources = newMockService.getResources();

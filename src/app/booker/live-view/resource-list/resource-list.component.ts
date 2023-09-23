@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as actions from '../store/resource-list.actions';
-import * as fromResourceList from '../store/resource-list.reducer';
+import * as actions from '../../actions/resource-list.actions';
+import * as fromResourceList from '../../reducers/resource-list.reducer';
 import { Resource } from 'src/app/_models/resource';
 
 @Component({

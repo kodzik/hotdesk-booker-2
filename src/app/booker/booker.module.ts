@@ -7,8 +7,8 @@ import { ResourceListComponent } from './live-view/resource-list/resource-list.c
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { resourceListReducer } from './live-view/store/resource-list.reducer';
-import { ResourceListEffects } from './live-view/store/resource-list.effects';
+import { resourceListReducer } from './reducers/resource-list.reducer';
+import { ResourceListEffects } from './effects/resource-list.effects';
 
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
