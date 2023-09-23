@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BookerRoutingModule } from './booker-routing.module';
-import { LiveViewComponent } from './live-view/live-view.component';
-import { ResourceListComponent } from './live-view/resource-list/resource-list.component';
+import { LiveViewComponent } from './containers/live-view/live-view.component';
+import { ResourceListComponent } from './components/resource-list/resource-list.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 

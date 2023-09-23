@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LiveViewComponent } from './live-view.component';
-import { ResourceListComponent } from './resource-list/resource-list.component';
+import { ResourceListComponent } from '../../components/resource-list/resource-list.component';
 import { StoreModule } from '@ngrx/store';
-import * as fromApp from '../../store/app.reducer';
+import * as fromApp from '../../../store/app.reducer';
 import { TableModule } from 'primeng/table';
 
 describe('LiveViewComponent', () => {
