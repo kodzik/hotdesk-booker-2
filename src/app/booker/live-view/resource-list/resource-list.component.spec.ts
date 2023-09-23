@@ -15,7 +15,7 @@ describe('ResourceListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ResourceListComponent],
-      imports: [TableModule], //StoreModule.forRoot(fromApp.appReducer),
+      imports: [TableModule],
       providers: [provideMockStore()],
     }).compileComponents();
 
@@ -29,10 +29,9 @@ describe('ResourceListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('should return false if the user state is not logged in', () => {
+  // it('should return sth', () => {
   //   const expected = cold('(a|)', { ids: [] });
   //   console.log(component.resources$);
-
   //   expect(component.resources$).toBeObservable(expected);
   // });
 });

@@ -10,8 +10,8 @@ export const initialState: State = resourcesAdapter.getInitialState();
 
 export const resourceListReducer = createReducer(
   initialState,
-  on(ResourceListActions.addResource, (state, action) => {
-    return resourcesAdapter.addOne(action.payload, state);
+  on(ResourceListActions.addResources, (state, action) => {
+    return resourcesAdapter.addMany(action.payload, state);
   })
 );
 

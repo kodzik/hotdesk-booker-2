@@ -17,6 +17,7 @@ import { TagModule } from 'primeng/tag';
 import { CalendarModule } from 'primeng/calendar';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'primeng/api';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [LiveViewComponent, ResourceListComponent],
@@ -32,6 +33,7 @@ import { SharedModule } from 'primeng/api';
     StoreModule.forFeature('resource', resourceListReducer),
     EffectsModule.forFeature([ResourceListEffects]),
     SharedModule,
+    HttpClientModule,
   ],
   providers: [],
 })

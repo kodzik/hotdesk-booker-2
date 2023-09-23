@@ -7,14 +7,9 @@ import { SharedModule } from './_shared/shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { AngularFireModule } from '@angular/fire/compat';
-import { environment } from 'src/environments/environment';
-import {
-  AngularFirestoreModule,
-  AngularFirestore,
-} from '@angular/fire/compat/firestore';
 import { BookerModule } from './booker/booker.module';
 import { NavbarComponent } from './navbar/navbar.component';
+import { fakeBackendProvider } from './_test_data/fake-backend.interceptor';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
@@ -28,10 +23,8 @@ import { NavbarComponent } from './navbar/navbar.component';
       maxAge: 25, // Retains last 25 states
     }),
     EffectsModule.forRoot([]),
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
   ],
-  providers: [AngularFirestore],
+  providers: [fakeBackendProvider],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

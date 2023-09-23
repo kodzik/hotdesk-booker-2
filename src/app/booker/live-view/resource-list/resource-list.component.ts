@@ -22,6 +22,5 @@ export class ResourceListComponent {
     this.resources$.subscribe((resource) => {
       this.resources = [...resource];
     });
-    this.store.dispatch(actions.queryResources());
   }
 }
