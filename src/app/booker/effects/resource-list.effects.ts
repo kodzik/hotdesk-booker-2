@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, mergeMap, switchMap } from 'rxjs';
-import * as actions from '../actions/resource-list.actions';
+import { map, switchMap } from 'rxjs';
+import { ResourceListActions } from '../actions/';
 import { ResourceListService } from '../../booker/resource-list.service';
 import { Resource } from 'src/app/_models/resource';
 
@@ -9,10 +9,10 @@ import { Resource } from 'src/app/_models/resource';
 export class ResourceListEffects {
   resourceQuery = createEffect(() =>
     this.actions$.pipe(
-      ofType(actions.queryResources),
+      ofType(ResourceListActions.queryResources),
       switchMap(() => this.resourceService.getResources()),
       map((resources) => {
-        return actions.addResources({ payload: resources });
+        return ResourceListActions.addResources({ payload: resources });
       })
     )
   );

@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { FirebaseTestComponent } from './firebase-test/firebase-test.component';
 
 const routes: Routes = [
   {
@@ -13,7 +12,6 @@ const routes: Routes = [
       { path: 'sign-in', component: SignInComponent },
       { path: 'sign-up', component: SignUpComponent },
 
-      { path: 'test', component: FirebaseTestComponent },
       { path: '**', redirectTo: 'sign-in' }, //, pathMatch: 'full'
       // { path: 'verify-email', component: VerifyEmailComponent },
       // { path: 'forgot-password', component: ForgotPasswordComponent },

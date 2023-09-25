@@ -20,6 +20,7 @@ import { fakeBackendProvider } from './_test_data/fake-backend.interceptor';
     SharedModule,
     StoreModule.forRoot(fromApp.appReducer),
     StoreDevtoolsModule.instrument({
+      trace: true,
       maxAge: 25, // Retains last 25 states
     }),
     EffectsModule.forRoot([]),
