@@ -9,7 +9,7 @@ $my-palette: mat.define-palette(mat.$blue-grey-palette);
 
 .account-container {
   display: flex;
-  height: 100vh;
+  height: 85vh;
   width: 100vw;
   background: url("/assets/office.jpg") no-repeat center center fixed;
   background-size: cover;
@@ -17,9 +17,9 @@ $my-palette: mat.define-palette(mat.$blue-grey-palette);
 }
 
 .account-subcontainer {
-  background-color: mat.get-color-from-palette($my-palette, "100-contrast");
-  width: 30%;
+  // background-color: mat.get-color-from-palette($my-palette, "100-contrast");
+  // width: 30%;
   height: 70%;
   margin: auto;
-  border-radius: 2%;
+  // border-radius: 2%;
 }
