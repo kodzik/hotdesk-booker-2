@@ -1,4 +1,3 @@
-import { GeoPoint } from '@angular/fire/firestore';
 import { Resource } from '../_models/resource';
 import { User } from '../_models/user';
 
@@ -11,7 +10,7 @@ export const resources: Resource[] = [
     category: 'workspace',
     available: true,
     reserved: true,
-    bounds: new GeoPoint(11, 22),
+    bounds: { lat: 11, lng: 22 },
   },
   {
     id: '2',
@@ -19,6 +18,6 @@ export const resources: Resource[] = [
     category: 'workspace',
     available: false,
     reserved: false,
-    bounds: new GeoPoint(22, 33),
+    bounds: { lat: 33, lng: 44 },
   },
 ];

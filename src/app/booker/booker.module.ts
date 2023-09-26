@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 import { BookerRoutingModule } from './booker-routing.module';
 import { LiveViewComponent } from './containers/live-view/live-view.component';
@@ -9,31 +9,20 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { resourceListReducer } from './reducers/resource-list.reducer';
 import { ResourceListEffects } from './effects/resource-list.effects';
-
-import { TableModule } from 'primeng/table';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { TagModule } from 'primeng/tag';
-import { CalendarModule } from 'primeng/calendar';
-import { FormsModule } from '@angular/forms';
-import { SharedModule } from 'primeng/api';
-import { HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from '../material';
+import { SharedModule } from '../_shared/shared/shared.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [LiveViewComponent, ResourceListComponent],
   imports: [
-    TableModule,
-    ButtonModule,
-    InputTextModule,
-    TagModule,
-    CalendarModule,
-    FormsModule,
     CommonModule,
+    HttpClientModule,
     BookerRoutingModule,
     StoreModule.forFeature('resource', resourceListReducer),
     EffectsModule.forFeature([ResourceListEffects]),
     SharedModule,
-    HttpClientModule,
+    MaterialModule,
   ],
   providers: [],
 })

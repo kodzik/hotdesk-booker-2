@@ -10,11 +10,18 @@ import { EffectsModule } from '@ngrx/effects';
 import { BookerModule } from './booker/booker.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { fakeBackendProvider } from './_test_data/fake-backend.interceptor';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
   imports: [
+    MaterialModule,
+
     AuthModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     BookerModule,
     SharedModule,
