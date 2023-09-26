@@ -11,12 +11,17 @@ import { Observable, of, throwError, map } from 'rxjs';
 import { delay, materialize, dematerialize } from 'rxjs/operators';
 import * as test_resources from './fake-backend-resources';
 import { Resource } from '../_models/resource';
+import { User } from '../_models/user';
+import { users } from '../_test_data/fake-backend-resources';
 
 // array in local storage for registered users
 const usersKey = 'users';
 const resourcesKey = 'resources';
 
-let users: any[] = JSON.parse(localStorage.getItem(usersKey)!) || [];
+// TODO fix to load users to localstore on init
+// let users: any[] = JSON.parse(localStorage.getItem(usersKey)!) || [];
+// let users: User[] =
+
 let resources: Resource[] =
   JSON.parse(localStorage.getItem(resourcesKey)!) || [];
 
@@ -44,8 +49,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           return getUserById();
         case url.match(/\/users\/\d+$/) && method === 'PUT':
           return updateUser();
-        case url.match(/\/users\/\d+$/) && method === 'DELETE':
-          return deleteUser();
+        // case url.match(/\/users\/\d+$/) && method === 'DELETE':
+        //   return deleteUser();
         default:
           // pass through any requests not handled above
           return next.handle(request);
@@ -67,6 +72,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       const user = users.find(
         (x) => x.username === username && x.password === password
       );
+
       if (!user) return error('Username or password is incorrect');
       return ok({
         ...basicDetails(user),
@@ -76,8 +82,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     function register() {
       const user = body;
-
-      console.log(user);
 
       if (users.find((x) => x.username === user.username)) {
         return error('Username "' + user.username + '" is already taken');
@@ -119,13 +123,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       return ok();
     }
 
-    function deleteUser() {
-      if (!isLoggedIn()) return unauthorized();
+    // TODO fix USER type
+    // function deleteUser() {
+    //   if (!isLoggedIn()) return unauthorized();
 
-      users = users.filter((x) => x.id !== idFromUrl());
-      localStorage.setItem(usersKey, JSON.stringify(users));
-      return ok();
-    }
+    //   users = users.filter((x) => x.id !== idFromUrl());
+    //   localStorage.setItem(usersKey, JSON.stringify(users));
+    //   return ok();
+    // }
 
     // helper functions
 

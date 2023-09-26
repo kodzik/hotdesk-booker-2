@@ -1,5 +1,8 @@
 import { GeoPoint } from '@angular/fire/firestore';
 import { Resource } from '../_models/resource';
+import { User } from '../_models/user';
+
+export const users: User[] = [{ username: 'asd', password: 'asd' }];
 
 export const resources: Resource[] = [
   {

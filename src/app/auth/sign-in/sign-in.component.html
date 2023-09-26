@@ -4,38 +4,36 @@
   <h4 class="card-header">Sign in</h4>
   <div class="card">
     <div class="card-body">
-      <form [formGroup]="form">
-        <!-- (ngSubmit)="onSubmit()" -->
+      <form
+        [formGroup]="form"
+        (ngSubmit)="
+          onSubmit({ username: f.username.value, password: f.password.value })
+        "
+      >
         <div class="form-group">
           <div class="main-input">
             <span class="p-float-label">
               <input
-                id="email"
+                id="username"
                 class="input"
                 type="text"
-                formControlName="email"
+                formControlName="username"
                 pInputText
                 required
                 [ngClass]="{
                   'ng-invalid ng-dirty':
-                    (submitted && f.email.errors) ||
-                    (f.email.touched && f.email.errors)
+                    (submitted && f.username.errors) ||
+                    (f.username.touched && f.username.errors)
                 }"
               />
-              <label htmlFor="username">Email</label>
+              <label htmlFor="username">username</label>
             </span>
 
             <small
               class="p-error"
-              *ngIf="(submitted && f.email.errors?.['required'] || f.email.touched && f.email.errors?.['required'] ) "
+              *ngIf="(submitted && f.username.errors?.['required'] || f.username.touched && f.username.errors?.['required'] ) "
             >
-              Email required
-            </small>
-            <small
-              class="p-error"
-              *ngIf="(submitted && f.email.errors?.['email'] || f.email.touched && f.email.errors?.['email'] ) "
-            >
-              Email format invalid
+              username required
             </small>
           </div>
 
@@ -70,7 +68,7 @@
 
         <div class="error">
           <small class="p-error">
-            {{ error }}
+            {{ error$ | async }}
           </small>
         </div>
 
@@ -80,22 +78,11 @@
             label="Login"
             class="p-button-rounded p-button-outlined btn"
             type="submit"
-            [loading]="loading"
+            [loading]="pending$ | async"
             iconPos="right"
           ></button>
         </div>
       </form>
-      Or sign in with google
-      <div class="formGroup">
-        <button
-          pButton
-          type="button"
-          class="p-button-rounded p-button-outlined"
-          icon="pi pi-google"
-          label="Sign in with Google"
-        ></button>
-        <!-- (click)="authService.GoogleAuth()" -->
-      </div>
     </div>
   </div>
 
