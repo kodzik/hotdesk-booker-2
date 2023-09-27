@@ -2,8 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SignInComponent } from './sign-in.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { MaterialModule } from 'src/app/material';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('SignInComponent', () => {
   let component: SignInComponent;
@@ -12,7 +13,7 @@ describe('SignInComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, ButtonModule],
+      imports: [NoopAnimationsModule, ReactiveFormsModule, MaterialModule],
       declarations: [SignInComponent],
       providers: [provideMockStore()],
     }).compileComponents();

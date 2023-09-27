@@ -3,7 +3,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ResourceListService } from './resource-list.service';
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
-import { GeoPoint } from '@angular/fire/firestore';
 import { mockResources } from 'src/app/_test_data/mock_data';
 import { cold } from 'jasmine-marbles';
 
@@ -59,7 +58,7 @@ describe('ResourceListService', () => {
         .toBe('workspace');
       expect(result[1].bounds)
         .withContext('expected bounds')
-        .toEqual(new GeoPoint(33, 44));
+        .toEqual({ lat: 2, lng: 2 });
     });
   });
 

@@ -4,7 +4,8 @@ import { LiveViewComponent } from './live-view.component';
 import { ResourceListComponent } from '../../components/resource-list/resource-list.component';
 import { StoreModule } from '@ngrx/store';
 import * as fromApp from '../../../store/app.reducer';
-import { TableModule } from 'primeng/table';
+import { MaterialModule } from 'src/app/material';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('LiveViewComponent', () => {
   let component: LiveViewComponent;
@@ -12,7 +13,11 @@ describe('LiveViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StoreModule.forRoot(fromApp.appReducer), TableModule],
+      imports: [
+        StoreModule.forRoot(fromApp.appReducer),
+        MaterialModule,
+        NoopAnimationsModule,
+      ],
       declarations: [LiveViewComponent, ResourceListComponent],
     }).compileComponents();
 

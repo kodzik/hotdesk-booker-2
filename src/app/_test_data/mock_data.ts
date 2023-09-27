@@ -1,4 +1,3 @@
-import { GeoPoint } from '@angular/fire/firestore';
 import { Resource } from '../_models/resource';
 
 export const mockResources: Resource[] = [
@@ -8,7 +7,7 @@ export const mockResources: Resource[] = [
     category: 'workspace',
     available: false,
     reserved: false,
-    bounds: new GeoPoint(11, 22),
+    bounds: { lat: 1, lng: 1 },
   },
   {
     id: 'test_id_2',
@@ -16,6 +15,6 @@ export const mockResources: Resource[] = [
     category: 'workspace',
     available: false,
     reserved: false,
-    bounds: new GeoPoint(33, 44),
+    bounds: { lat: 2, lng: 2 },
   },
 ];
