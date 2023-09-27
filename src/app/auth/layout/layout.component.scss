@@ -17,9 +17,6 @@ $my-palette: mat.define-palette(mat.$blue-grey-palette);
 }
 
 .account-subcontainer {
-  // background-color: mat.get-color-from-palette($my-palette, "100-contrast");
-  // width: 30%;
   height: 70%;
   margin: auto;
-  // border-radius: 2%;
 }
