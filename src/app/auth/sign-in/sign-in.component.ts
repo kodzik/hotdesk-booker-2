@@ -7,7 +7,7 @@ import {
 import { Store } from '@ngrx/store';
 import { Credentials } from '../models/credentials';
 import { SignInPageActions } from '../actions/';
-import * as fromAuth from '../reducers';
+import { AuthSelectors } from '../selectors';
 import { Observable, map } from 'rxjs';
 
 @Component({
@@ -26,10 +26,10 @@ export class SignInComponent {
 
   constructor(private formBuilder: UntypedFormBuilder, private store: Store) {
     this.error$ = this.store
-      .select(fromAuth.selectSignInPageError)
+      .select(AuthSelectors.selectSignInPageError)
       .pipe(map((error) => (error ? error.error.message : error)));
 
-    this.pending$ = this.store.select(fromAuth.selectSignInPagePending);
+    this.pending$ = this.store.select(AuthSelectors.selectSignInPagePending);
 
     this.form = this.formBuilder.group({
       username: ['', [Validators.required]],

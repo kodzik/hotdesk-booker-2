@@ -43,28 +43,7 @@ describe(`Effect: Attendess`, () => {
     (service.getResources as jasmine.Spy).and.returnValue(of(mockResources));
   });
 
-  describe('fetchCars$', () => {
-    beforeEach(() => {
-      actions$ = new ReplaySubject(1);
-      actions$.next(effects.resourceQuery); // wysyłam akcje fetchCars, efekt się odpala
-    });
-
-    it('should return EEEELOOOO', () => {
-      effects.resourceQuery.subscribe((resultAction) => {
-        // expect(resultAction).toEqual(new StoreCars({carsList: mockCars}));
-        // done();
-        console.log(resultAction);
-
-        expect(resultAction).toBeTruthy();
-      });
-    });
-
-    // it('should return FetchCarsFailed action on failure', () => {
-    //   (carsService.getCars as jasmine.Spy).and.returnValue(throwError({status: 404}));
-
-    //   carsEffects.fetchCars$.subscribe(resultAction => {
-    //     expect(resultAction).toEqual(new FetchCarsFailed());
-    //   });
-    // });
+  describe('resourceQuery', () => {
+    xit('should return true', () => {});
   });
 });

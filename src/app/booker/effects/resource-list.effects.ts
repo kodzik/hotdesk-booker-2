@@ -3,7 +3,6 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
 import { ResourceListActions } from '../actions/';
 import { ResourceListService } from '../../booker/resource-list.service';
-import { Resource } from 'src/app/_models/resource';
 
 @Injectable()
 export class ResourceListEffects {
