@@ -1,6 +1,15 @@
+@use "@angular/material" as mat;
+
+$my-palette: mat.define-palette(mat.$blue-grey-palette);
+
+.my-custom-style {
+  background: mat.get-color-from-palette($my-palette, "500");
+  color: mat.get-color-from-palette($my-palette, "500-contrast");
+}
+
 .account-container {
   display: flex;
-  height: 100vh;
+  height: 85vh;
   width: 100vw;
   background: url("/assets/office.jpg") no-repeat center center fixed;
   background-size: cover;
@@ -8,9 +17,6 @@
 }
 
 .account-subcontainer {
-  background-color: white;
-  width: 30%;
   height: 70%;
   margin: auto;
-  border-radius: 2%;
 }

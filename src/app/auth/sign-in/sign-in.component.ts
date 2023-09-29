@@ -1,30 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   UntypedFormBuilder,
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Credentials } from '../models/credentials';
+import { SignInPageActions } from '../actions/';
+import { AuthSelectors } from '../selectors';
+import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss'],
 })
-export class SignInComponent implements OnInit {
-  loading: boolean = false;
+export class SignInComponent {
+  //TODO fix
   submitted = false;
-  error: string = '';
+
+  error$: Observable<any>;
+  pending$: Observable<boolean>;
+
   form: UntypedFormGroup = new UntypedFormGroup({});
 
-  constructor(
-    private formBuilder: UntypedFormBuilder,
-    private _router: Router
-  ) {}
+  constructor(private formBuilder: UntypedFormBuilder, private store: Store) {
+    this.error$ = this.store
+      .select(AuthSelectors.selectSignInPageError)
+      .pipe(map((error) => (error ? error.error.message : error)));
 
-  ngOnInit(): void {
+    this.pending$ = this.store.select(AuthSelectors.selectSignInPagePending);
+
     this.form = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required]],
       password: ['', Validators.required],
     });
   }
@@ -33,20 +41,7 @@ export class SignInComponent implements OnInit {
     return this.form.controls;
   }
 
-  onSubmit() {
-    this._router.navigate(['live']);
-    this.submitted = true;
-    this.loading = true;
-    // stop here if form is invalid
-    if (this.form.invalid) {
-      this.loading = false;
-      return;
-    }
-    // this.authService
-    //   .SignIn(this.f.email.value, this.f.password.value)
-    //   .catch((error) => {
-    //     this.error = this.authService.errorHandler(error);
-    //     this.loading = false;
-    //   });
+  onSubmit(credentials: Credentials) {
+    this.store.dispatch(SignInPageActions.signIn({ credentials }));
   }
 }
