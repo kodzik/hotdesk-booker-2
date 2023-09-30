@@ -13,13 +13,18 @@ import { MaterialModule } from '../material';
 import { SharedModule } from '../_shared/shared/shared.module';
 import { CommonModule } from '@angular/common';
 
+import * as fromResourceList from './reducers';
+
 @NgModule({
   declarations: [LiveViewComponent, ResourceListComponent],
   imports: [
     CommonModule,
     HttpClientModule,
     BookerRoutingModule,
-    StoreModule.forFeature('resource', resourceListReducer),
+    StoreModule.forFeature(
+      fromResourceList.resourcesFeatureKey,
+      fromResourceList.reducers
+    ),
     EffectsModule.forFeature([ResourceListEffects]),
     SharedModule,
     MaterialModule,

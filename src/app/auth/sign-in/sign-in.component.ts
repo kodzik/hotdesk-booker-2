@@ -16,7 +16,7 @@ import { Observable, map } from 'rxjs';
   styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent {
-  //TODO fix
+  //TODO fix view errors
   submitted = false;
 
   error$: Observable<any>;
@@ -32,8 +32,8 @@ export class SignInComponent {
     this.pending$ = this.store.select(AuthSelectors.selectSignInPagePending);
 
     this.form = this.formBuilder.group({
-      username: ['', [Validators.required]],
-      password: ['', Validators.required],
+      username: ['test', [Validators.required]],
+      password: ['test', Validators.required],
     });
   }
 

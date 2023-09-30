@@ -25,7 +25,7 @@ import { MaterialModule } from './material';
     AppRoutingModule,
     BookerModule,
     SharedModule,
-    StoreModule.forRoot(fromApp.appReducer),
+    StoreModule.forRoot(),
     StoreDevtoolsModule.instrument({
       trace: true,
       maxAge: 25, // Retains last 25 states
