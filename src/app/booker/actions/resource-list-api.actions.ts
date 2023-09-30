@@ -1,12 +1,12 @@
 import { createAction, props } from '@ngrx/store';
 import { Resource } from 'src/app/_models/resource';
 
-export const searchSuccess = createAction(
+export const fetchSuccess = createAction(
   '[Resource List/API] Search Success',
-  props<{ resources: Resource[] }>()
+  props<{ payload: Resource[] }>()
 );
 
-export const searchFailure = createAction(
+export const fetchFailure = createAction(
   '[Resource List/API] Search Failure',
   props<{ errorMsg: string }>()
 );

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import * as actions from '../../actions/resource-list.actions';
-import * as fromResourceList from '../../reducers/resource-list.reducer';
+import * as fromResourceList from '../../reducers';
 import { Resource } from 'src/app/_models/resource';
 import { MatTableDataSource } from '@angular/material/table';
 import {
@@ -30,8 +30,9 @@ import {
 })
 export class ResourceListComponent {
   resources$: Observable<Resource[]>;
+  // loading$: Observable<boolean>;
 
-  thingsAsMatTableDataSource$: Observable<MatTableDataSource<Resource>>;
+  resourcesAsMatTableDataSource$: Observable<MatTableDataSource<Resource>>;
   dataSource = new MatTableDataSource<Resource>();
 
   expandedElement: Resource | null;
@@ -39,12 +40,14 @@ export class ResourceListComponent {
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
 
   constructor(private store: Store) {
-    this.resources$ = this.store.select(fromResourceList.selectAll);
+    this.resources$ = this.store.select(fromResourceList.selectAllResources);
+    // this.loading$ = this.store.select(fromResourceList.selectSearchLoading);
+
     this.store.dispatch(actions.queryResources());
 
-    this.thingsAsMatTableDataSource$ = this.resources$.pipe(
-      map((things) => {
-        this.dataSource.data = things;
+    this.resourcesAsMatTableDataSource$ = this.resources$.pipe(
+      map((resources) => {
+        this.dataSource.data = resources;
         return this.dataSource;
       })
     );

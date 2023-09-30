@@ -1,5 +1,5 @@
 import { Resource } from 'src/app/_models/resource';
-import { addResources } from '../actions/resource-list.actions';
+import { ResourceListApiActions } from '../actions';
 import {
   initialState,
   resourceListReducer,
@@ -17,7 +17,7 @@ describe('ResourceListReducer', () => {
       expect(state).toBe(initialState);
     });
   }),
-    describe('addResource action', () => {
+    describe('fetchSuccess action', () => {
       it('should add resource and update state', () => {
         const newResources: Resource[] = [
           {
@@ -33,11 +33,13 @@ describe('ResourceListReducer', () => {
             some_id: newResources[0],
           },
         };
-        const action = addResources({ payload: newResources });
+        const action = ResourceListApiActions.fetchSuccess({
+          payload: newResources,
+        });
         const state = resourceListReducer(initialState, action);
 
         expect(state).toEqual(newState);
-        expect(state).not.toBe(initialState);
+        expect(state).not.toEqual(initialState);
       });
     });
 });
