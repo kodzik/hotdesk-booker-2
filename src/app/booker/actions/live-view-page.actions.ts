@@ -1,6 +1,5 @@
 import { createAction } from '@ngrx/store';
 
-/**
- * Load Resources Action
- */
-export const enter = createAction('[LiveView Page] Enter');
+// export const enter = createAction('[LiveView Page] Enter');
+
+export const reserveResource = createAction('[LiveView Page] ReserveResource');
