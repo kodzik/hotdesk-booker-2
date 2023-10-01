@@ -16,6 +16,7 @@ import * as fromResourceList from './reducers';
 import { ReservationComponent } from './containers/reservation/reservation.component';
 import { LiveViewPageEffects } from './effects/live-view-page.effects';
 import { BookerComponent } from './containers/booker/booker.component';
+import { DatePickerComponent } from './components/date-picker/date-picker.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { BookerComponent } from './containers/booker/booker.component';
     ResourceListComponent,
     ReservationComponent,
     BookerComponent,
+    DatePickerComponent,
   ],
   imports: [
     CommonModule,

@@ -7,6 +7,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   imports: [
@@ -18,6 +20,8 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatTableModule,
     MatIconModule,
     MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports: [
     MatButtonModule,
@@ -28,6 +32,8 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatTableModule,
     MatIconModule,
     MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
 })
 export class MaterialModule {}

@@ -1,0 +1,58 @@
+<div [formGroup]="subForm">
+  <div>
+    <span>
+      <mat-form-field class="example-full-width">
+        <mat-label>Start date</mat-label>
+        <input
+          matInput
+          [matDatepickerFilter]="myFilter"
+          [matDatepicker]="startPicker"
+          formControlName="startDate"
+          required
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="startPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field #startTime style="margin-left: 1rem">
+        <mat-label>Start time</mat-label>
+        <input matInput type="time" value="08:00" formControlName="startTime" />
+      </mat-form-field>
+    </span>
+  </div>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>End date</mat-label>
+    <input
+      matInput
+      [matDatepickerFilter]="myFilter"
+      [matDatepicker]="endPicker"
+      formControlName="endDate"
+    />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle
+      matIconSuffix
+      [for]="endPicker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #endPicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field #endTime style="margin-left: 1rem">
+    <mat-label>End time</mat-label>
+    <input matInput type="time" value="16:00" formControlName="endTime" />
+  </mat-form-field>
+</div>
+
+<!-- <div [formGroup]="subForm">
+  <mat-form-field appearance="outline">
+    <input
+      matInput
+      placeholder="Your Company Name"
+      formControlName="companyName"
+    />
+  </mat-form-field>
+</div> -->

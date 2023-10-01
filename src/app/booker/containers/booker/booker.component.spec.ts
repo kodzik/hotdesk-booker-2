@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BookerComponent } from './booker.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('BookerComponent', () => {
   let component: BookerComponent;
@@ -8,9 +9,9 @@ describe('BookerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BookerComponent ]
-    })
-    .compileComponents();
+      imports: [RouterTestingModule],
+      declarations: [BookerComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BookerComponent);
     component = fixture.componentInstance;

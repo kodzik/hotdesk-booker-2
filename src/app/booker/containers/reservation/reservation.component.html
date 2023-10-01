@@ -1,1 +1,24 @@
-<p>reservation works!</p>
+<mat-stepper [linear]="true" #stepper>
+  <mat-step label="Choose date" [stepControl]="datePicker">
+    <form [formGroup]="datePicker">
+      <app-date-picker></app-date-picker>
+    </form>
+    <div>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+  <mat-step label="Choose resource">
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+  <mat-step label="Summary">
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-raised-button color="primary" matStepperNext>
+        Confirm reservation
+      </button>
+    </div>
+  </mat-step>
+</mat-stepper>
