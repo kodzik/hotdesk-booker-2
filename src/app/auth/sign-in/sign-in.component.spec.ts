@@ -40,7 +40,7 @@ describe('SignInComponent', () => {
     expect(component['f']).toBeTruthy();
   });
 
-  it('signIn should dispatch add action', () => {
+  it('signIn should dispatch signIn action', () => {
     const credentials: Credentials = {
       username: 'test',
       password: 'test',

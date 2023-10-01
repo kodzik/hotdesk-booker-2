@@ -11,7 +11,12 @@ import { LiveViewPageActions } from '../../actions';
       </mat-card>
       <mat-card class="resource-list">
         <app-resource-list></app-resource-list>
-        <button mat-raised-button color="primary" (click)="reserveResource()">
+        <button
+          id="reserveResourceBtn"
+          mat-raised-button
+          color="primary"
+          (click)="reserveResource()"
+        >
           Go to booking
         </button>
       </mat-card>
