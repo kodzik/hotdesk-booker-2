@@ -4,7 +4,10 @@
     <form
       [formGroup]="form"
       (ngSubmit)="
-        onSubmit({ username: f.username.value, password: f.password.value })
+        onSubmit({
+          username: formControls.username.value,
+          password: formControls.password.value
+        })
       "
     >
       <p>
