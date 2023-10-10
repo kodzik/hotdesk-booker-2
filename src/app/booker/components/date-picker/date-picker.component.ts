@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  FormGroupDirective,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
+import { DatePicker } from '../../_models/datepicker';
 
 @Component({
   selector: 'app-date-picker',
@@ -13,23 +9,23 @@ import {
 })
 export class DatePickerComponent implements OnInit {
   form: FormGroup;
-  subForm: FormGroup;
+  datePicker: FormGroup;
 
   constructor(
     private ctrlContainer: FormGroupDirective,
     private fb: FormBuilder
   ) {
-    this.subForm = this.fb.group({
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
-      startTime: ['08:00', Validators.required],
-      endTime: ['16:00', Validators.required],
+    this.datePicker = this.fb.group<DatePicker>({
+      startDate: null,
+      endDate: null,
+      startTime: '',
+      endTime: '',
     });
   }
 
   ngOnInit(): void {
     this.form = this.ctrlContainer.form;
-    this.form.addControl('datePicker', this.subForm);
+    this.form.addControl('datePicker', this.datePicker);
   }
 
   myFilter = (d: Date | null): boolean => {

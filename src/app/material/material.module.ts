@@ -9,6 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   imports: [
@@ -22,6 +24,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatStepperModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSelectModule,
+    MatSlideToggleModule,
   ],
   exports: [
     MatButtonModule,
@@ -34,6 +38,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatStepperModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSelectModule,
+    MatSlideToggleModule,
   ],
 })
 export class MaterialModule {}

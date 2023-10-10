@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LiveViewComponent } from './containers/live-view/live-view.component';
-import { ReservationComponent } from './containers/reservation/reservation.component';
 import { BookerComponent } from './containers/booker/booker.component';
+import { ReservationStepperComponent } from './containers/reservation-stepper/reservation-stepper.component';
 
 const routes: Routes = [
   {
@@ -10,7 +10,7 @@ const routes: Routes = [
     component: BookerComponent,
     children: [
       { path: 'live-view', component: LiveViewComponent },
-      { path: 'reservation', component: ReservationComponent },
+      { path: 'reservation', component: ReservationStepperComponent },
     ],
   },
 ];

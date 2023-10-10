@@ -1,0 +1,22 @@
+<mat-card style="background-color: brown">
+  <mat-card-content>
+    <p>
+      <span>
+        <mat-icon fontIcon="calendar_month"></mat-icon>
+        {{ datePicker.startDate | date }} - {{ datePicker.endDate | date }}
+      </span>
+    </p>
+    <p>
+      <span>
+        <mat-icon fontIcon="schedule"></mat-icon>
+        {{ datePicker.startTime }} - {{ datePicker.endTime }}
+      </span>
+    </p>
+    <p>
+      <span>
+        <mat-icon fontIcon="computer"></mat-icon>
+        workstation name
+      </span>
+    </p>
+  </mat-card-content>
+</mat-card>

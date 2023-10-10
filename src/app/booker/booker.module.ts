@@ -17,6 +17,11 @@ import { ReservationComponent } from './containers/reservation/reservation.compo
 import { LiveViewPageEffects } from './effects/live-view-page.effects';
 import { BookerComponent } from './containers/booker/booker.component';
 import { DatePickerComponent } from './components/date-picker/date-picker.component';
+import { SelectionsComponent } from './components/selections/selections.component';
+import { SelectionItemComponent } from './components/selection-item/selection-item.component';
+import { ReservationStepperComponent } from './containers/reservation-stepper/reservation-stepper.component';
+import { MapComponent } from './components/map/map.component';
+import { ReservationFormDirective } from './reservation-form.directive';
 
 @NgModule({
   declarations: [
@@ -25,6 +30,11 @@ import { DatePickerComponent } from './components/date-picker/date-picker.compon
     ReservationComponent,
     BookerComponent,
     DatePickerComponent,
+    SelectionsComponent,
+    SelectionItemComponent,
+    ReservationStepperComponent,
+    MapComponent,
+    ReservationFormDirective,
   ],
   imports: [
     CommonModule,

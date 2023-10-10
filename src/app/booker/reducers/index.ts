@@ -1,4 +1,5 @@
 import * as fromSearch from './search.reducer';
+import * as fromReservation from './reservation.reducer';
 import * as fromResourceList from './resource-list.reducer';
 import {
   Action,
@@ -11,12 +12,14 @@ export const resourcesFeatureKey = 'resources';
 
 export interface ResourcesState {
   [fromSearch.searchFeatureKey]: fromSearch.State;
+  [fromReservation.reservationFeatureKey]: fromReservation.State;
   [fromResourceList.resourcesFeatureKey]: fromResourceList.State;
 }
 
 export function reducers(state: ResourcesState | undefined, action: Action) {
   return combineReducers({
     [fromSearch.searchFeatureKey]: fromSearch.reducer,
+    [fromReservation.reservationFeatureKey]: fromReservation.reservationReducer,
     [fromResourceList.resourcesFeatureKey]:
       fromResourceList.resourceListReducer,
   })(state, action);
@@ -33,6 +36,16 @@ export const selectResourceEntitiesState = createSelector(
 export const selectSearchState = createSelector(
   selectResourceState,
   (state) => state.search
+);
+
+export const selectReservationState = createSelector(
+  selectResourceState,
+  (state) => state.reservation
+);
+
+export const selectDatePicker = createSelector(
+  selectResourceState,
+  (state) => state.reservation.datePicker
 );
 
 export const selectSearchLoading = createSelector(
