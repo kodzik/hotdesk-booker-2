@@ -8,14 +8,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class ReservationStepperComponent {
   datePicker: FormGroup;
+  resourcePicker: FormGroup;
   viewModeMap: boolean = true;
 
   constructor(private _formBuilder: FormBuilder) {
     this.datePicker = this._formBuilder.group({});
-  }
-
-  get formControls() {
-    return this.datePicker.controls;
+    this.resourcePicker = this._formBuilder.group({});
   }
 
   toggleViewMode(event: boolean) {

@@ -38,14 +38,14 @@ export const selectSearchState = createSelector(
   (state) => state.search
 );
 
-export const selectReservationState = createSelector(
-  selectResourceState,
-  (state) => state.reservation
-);
-
 export const selectDatePicker = createSelector(
   selectResourceState,
   (state) => state.reservation.datePicker
+);
+
+export const selectResourcePicker = createSelector(
+  selectResourceState,
+  (state) => state.reservation.resourcePicker
 );
 
 export const selectSearchLoading = createSelector(

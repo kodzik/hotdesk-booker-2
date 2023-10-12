@@ -14,11 +14,13 @@
     <button mat-button matStepperNext>Next</button>
   </mat-step>
 
-  <mat-step label="Choose resource">
+  <mat-step label="Choose resource" [stepControl]="resourcePicker">
     <app-reservation (viewMode)="toggleViewMode($event)">
-      <app-resource-list
-        *ngIf="viewModeMap; else viewModeTable"
-      ></app-resource-list>
+      <form [formGroup]="resourcePicker">
+        <app-resource-list
+          *ngIf="viewModeMap; else viewModeTable"
+        ></app-resource-list>
+      </form>
     </app-reservation>
     <ng-template #viewModeTable>
       <app-map></app-map>
@@ -31,10 +33,18 @@
 
   <mat-step label="Summary">
     <div>
+      <app-reservation [mapToggle]="false" style="width: 100%">
+      </app-reservation>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-raised-button color="primary" matStepperNext>
         Confirm reservation
       </button>
+    </div>
+  </mat-step>
+  <mat-step label="Done">
+    <div>
+      Reservation made successfully
+      <button mat-raised-button color="primary">OK</button>
     </div>
   </mat-step>
 </mat-stepper>

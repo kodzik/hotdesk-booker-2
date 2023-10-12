@@ -22,6 +22,7 @@ import { SelectionItemComponent } from './components/selection-item/selection-it
 import { ReservationStepperComponent } from './containers/reservation-stepper/reservation-stepper.component';
 import { MapComponent } from './components/map/map.component';
 import { ReservationFormDirective } from './reservation-form.directive';
+import { FormGroupDirective } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,6 @@ import { ReservationFormDirective } from './reservation-form.directive';
     SharedModule,
     MaterialModule,
   ],
-  providers: [],
+  providers: [FormGroupDirective],
 })
 export class BookerModule {}

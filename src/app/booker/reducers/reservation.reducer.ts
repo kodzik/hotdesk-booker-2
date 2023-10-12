@@ -1,11 +1,13 @@
 import { createReducer, on } from '@ngrx/store';
 import * as reservationActions from '../actions/reservation.actions';
 import { DatePicker } from '../_models/datepicker';
+import { Resource } from 'src/app/_models/resource';
 
 export const reservationFeatureKey = 'reservation';
 
 export interface State {
   datePicker: DatePicker;
+  resourcePicker: Resource;
 }
 
 export const initialState: State = {
@@ -15,6 +17,7 @@ export const initialState: State = {
     startTime: '08:00',
     endTime: '16:00',
   },
+  resourcePicker: null,
 };
 
 export const reservationReducer = createReducer(

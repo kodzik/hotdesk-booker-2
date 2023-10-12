@@ -1,22 +1,19 @@
 <mat-card style="background-color: brown">
   <mat-card-content>
-    <p>
-      <span>
-        <mat-icon fontIcon="calendar_month"></mat-icon>
-        {{ datePicker.startDate | date }} - {{ datePicker.endDate | date }}
+    <mat-icon fontIcon="calendar_month"></mat-icon>
+    {{ datePicker.startDate | date }} - {{ datePicker.endDate | date }}
+  </mat-card-content>
+  <mat-card-content>
+    <mat-icon fontIcon="schedule"></mat-icon>
+    {{ datePicker.startTime }} - {{ datePicker.endTime }}
+  </mat-card-content>
+  <mat-card-content>
+    <div>
+      <mat-icon fontIcon="computer"></mat-icon>
+      <span *ngIf="(resource | json) != '{}'">
+        {{ resource.resourcePicker.name }},
+        {{ resource.resourcePicker.category }}
       </span>
-    </p>
-    <p>
-      <span>
-        <mat-icon fontIcon="schedule"></mat-icon>
-        {{ datePicker.startTime }} - {{ datePicker.endTime }}
-      </span>
-    </p>
-    <p>
-      <span>
-        <mat-icon fontIcon="computer"></mat-icon>
-        workstation name
-      </span>
-    </p>
+    </div>
   </mat-card-content>
 </mat-card>

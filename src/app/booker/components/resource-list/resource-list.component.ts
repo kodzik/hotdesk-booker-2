@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import * as actions from '../../actions/resource-list.actions';
@@ -12,6 +12,12 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import {
+  FormControl,
+  FormGroup,
+  FormGroupDirective,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-resource-list',
@@ -28,7 +34,10 @@ import {
     ]),
   ],
 })
-export class ResourceListComponent {
+export class ResourceListComponent implements OnInit {
+  form: FormGroup;
+  resourcePicker: FormControl;
+
   resources$: Observable<Resource[]>;
   // loading$: Observable<boolean>;
 
@@ -39,7 +48,7 @@ export class ResourceListComponent {
   columnsToDisplay = ['name', 'available', 'reserved'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private ctrlContainer: FormGroupDirective) {
     this.resources$ = this.store.select(fromResourceList.selectAllResources);
     // this.loading$ = this.store.select(fromResourceList.selectSearchLoading);
 
@@ -51,10 +60,20 @@ export class ResourceListComponent {
         return this.dataSource;
       })
     );
+    this.resourcePicker = new FormControl(null, Validators.required);
+  }
+
+  ngOnInit(): void {
+    this.form = this.ctrlContainer.form;
+    if (this.form) this.form.addControl('resourcePicker', this.resourcePicker);
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  clickedRow(row: Resource) {
+    this.resourcePicker.patchValue({ ...row });
   }
 }
