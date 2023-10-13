@@ -23,6 +23,7 @@ import { ReservationStepperComponent } from './containers/reservation-stepper/re
 import { MapComponent } from './components/map/map.component';
 import { ReservationFormDirective } from './reservation-form.directive';
 import { FormGroupDirective } from '@angular/forms';
+import { ReservationEffects } from './effects/reservation.effects';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,11 @@ import { FormGroupDirective } from '@angular/forms';
       fromResourceList.resourcesFeatureKey,
       fromResourceList.reducers
     ),
-    EffectsModule.forFeature([ResourceListEffects, LiveViewPageEffects]),
+    EffectsModule.forFeature([
+      ResourceListEffects,
+      LiveViewPageEffects,
+      ReservationEffects,
+    ]),
     SharedModule,
     MaterialModule,
   ],

@@ -1,10 +1,18 @@
+<p>CHUJ , success: {{ !!success }}, {{ error }}</p>
+<div class="alert alert-success" *ngIf="success">Success!</div>
+<div class="alert alert-danger" *ngIf="error">{{ error }}</div>
+
 <mat-stepper [linear]="true" #stepper>
   <mat-step label="Choose date" [stepControl]="datePicker">
     <div
       style="display: flex; flex-direction: row; justify-content: space-between"
     >
       <app-reservation [mapToggle]="false" style="width: 100%">
-        <form [formGroup]="datePicker">
+        <form
+          [formGroup]="datePicker"
+          (success)="onSuccess()"
+          (error)="onError($event)"
+        >
           <mat-card>
             <app-date-picker></app-date-picker>
           </mat-card>
@@ -36,7 +44,12 @@
       <app-reservation [mapToggle]="false" style="width: 100%">
       </app-reservation>
       <button mat-button matStepperPrevious>Back</button>
-      <button mat-raised-button color="primary" matStepperNext>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onSubmit()"
+        matStepperNext
+      >
         Confirm reservation
       </button>
     </div>
@@ -44,7 +57,7 @@
   <mat-step label="Done">
     <div>
       Reservation made successfully
-      <button mat-raised-button color="primary">OK</button>
+      <button mat-raised-button color="primary" (click)="onAccept()">OK</button>
     </div>
   </mat-step>
 </mat-stepper>

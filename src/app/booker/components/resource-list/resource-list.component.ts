@@ -13,7 +13,7 @@ import {
   trigger,
 } from '@angular/animations';
 import {
-  FormControl,
+  FormBuilder,
   FormGroup,
   FormGroupDirective,
   Validators,
@@ -36,7 +36,9 @@ import {
 })
 export class ResourceListComponent implements OnInit {
   form: FormGroup;
-  resourcePicker: FormControl;
+  resourcePicker: FormGroup;
+
+  success: boolean;
 
   resources$: Observable<Resource[]>;
   // loading$: Observable<boolean>;
@@ -48,11 +50,28 @@ export class ResourceListComponent implements OnInit {
   columnsToDisplay = ['name', 'available', 'reserved'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
 
-  constructor(private store: Store, private ctrlContainer: FormGroupDirective) {
-    this.resources$ = this.store.select(fromResourceList.selectAllResources);
+  constructor(
+    private store: Store,
+    private ctrlContainer: FormGroupDirective,
+    private fb: FormBuilder
+  ) {
     // this.loading$ = this.store.select(fromResourceList.selectSearchLoading);
+    this.resourcePicker = this.fb.group({
+      id: [null, Validators.required],
+      available: null,
+      name: '',
+      reserved: null,
+      bounds: null,
+      category: null,
+    });
+  }
 
+  ngOnInit(): void {
+    this.resources$ = this.store.select(fromResourceList.selectAllResources);
     this.store.dispatch(actions.queryResources());
+
+    this.form = this.ctrlContainer.form;
+    if (this.form) this.form.addControl('resourcePicker', this.resourcePicker);
 
     this.resourcesAsMatTableDataSource$ = this.resources$.pipe(
       map((resources) => {
@@ -60,12 +79,11 @@ export class ResourceListComponent implements OnInit {
         return this.dataSource;
       })
     );
-    this.resourcePicker = new FormControl(null, Validators.required);
   }
 
-  ngOnInit(): void {
-    this.form = this.ctrlContainer.form;
-    if (this.form) this.form.addControl('resourcePicker', this.resourcePicker);
+  onSuccess() {
+    this.success = true;
+    console.log('RESOURCE PICKER SUCCESS!');
   }
 
   applyFilter(event: Event) {

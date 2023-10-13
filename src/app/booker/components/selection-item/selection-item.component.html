@@ -8,12 +8,10 @@
     {{ datePicker.startTime }} - {{ datePicker.endTime }}
   </mat-card-content>
   <mat-card-content>
-    <div>
-      <mat-icon fontIcon="computer"></mat-icon>
-      <span *ngIf="(resource | json) != '{}'">
-        {{ resource.resourcePicker.name }},
-        {{ resource.resourcePicker.category }}
-      </span>
-    </div>
+    <mat-icon fontIcon="computer"></mat-icon>
+    <span *ngIf="(resourcePicker | json) != '{}'">
+      {{ resourcePicker.name }},
+      {{ resourcePicker.category }}
+    </span>
   </mat-card-content>
 </mat-card>

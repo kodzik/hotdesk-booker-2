@@ -1,4 +1,8 @@
-<div appReservationForm="resourcePicker">
+<div
+  [formGroup]="resourcePicker"
+  appReservationForm="resourcePicker"
+  (success)="onSuccess()"
+>
   <mat-form-field style="width: 100%">
     <mat-label>Filter</mat-label>
     <input
