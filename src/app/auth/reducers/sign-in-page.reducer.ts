@@ -3,6 +3,7 @@ import { SignInPageActions, AuthApiActions } from '../actions';
 
 export const signInPageFeatureKey = 'signInPage';
 
+//TODO fix error nested in error
 export interface State {
   error: { error: { message: string } } | null;
   pending: boolean;

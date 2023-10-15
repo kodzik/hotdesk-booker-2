@@ -38,8 +38,6 @@ export class ResourceListComponent implements OnInit {
   form: FormGroup;
   resourcePicker: FormGroup;
 
-  success: boolean;
-
   resources$: Observable<Resource[]>;
   // loading$: Observable<boolean>;
 
@@ -81,17 +79,12 @@ export class ResourceListComponent implements OnInit {
     );
   }
 
-  onSuccess() {
-    this.success = true;
-    console.log('RESOURCE PICKER SUCCESS!');
-  }
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  clickedRow(row: Resource) {
+  onResourceSelected(row: Resource) {
     this.resourcePicker.patchValue({ ...row });
   }
 }

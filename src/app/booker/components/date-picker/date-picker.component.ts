@@ -11,8 +11,6 @@ export class DatePickerComponent implements OnInit {
   form: FormGroup;
   datePicker: FormGroup;
 
-  success: boolean;
-
   constructor(
     private ctrlContainer: FormGroupDirective,
     private fb: FormBuilder
@@ -23,11 +21,6 @@ export class DatePickerComponent implements OnInit {
       startTime: '',
       endTime: '',
     });
-  }
-
-  onSuccess() {
-    this.success = true;
-    console.log('DATE PICKER SUCCESS!');
   }
 
   ngOnInit(): void {

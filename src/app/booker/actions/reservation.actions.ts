@@ -2,6 +2,8 @@ import { createAction, props } from '@ngrx/store';
 import { DatePicker } from '../_models/datepicker';
 import { Resource } from 'src/app/_models/resource';
 
+export const reservationNew = createAction('[Reservation] New');
+
 export const updateForm = createAction(
   '[Reservation] updateForm',
   props<{ payload: { path: string; value: any } }>()
@@ -14,7 +16,6 @@ export const reservationAdd = createAction(
 
 export const reservationSuccess = createAction(
   '[Reservation] Success',
-  // props<{ payload: { path: string } }>()
   props<{ payload: { reservationId: string } }>()
 );
 

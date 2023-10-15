@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { LiveViewPageActions } from '../../actions';
+import { ReservationActions } from '../../actions';
 
 @Component({
   selector: 'app-live-view',
@@ -48,6 +48,6 @@ export class LiveViewComponent {
   constructor(private store: Store) {}
 
   reserveResource() {
-    this.store.dispatch(LiveViewPageActions.reserveResource());
+    this.store.dispatch(ReservationActions.reservationNew());
   }
 }

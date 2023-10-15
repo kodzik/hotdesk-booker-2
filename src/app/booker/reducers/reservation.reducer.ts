@@ -8,6 +8,11 @@ export const reservationFeatureKey = 'reservation';
 export interface State {
   datePicker: DatePicker;
   resourcePicker: Resource;
+  status: {
+    inProgress: boolean;
+    pending: boolean;
+    error: string | null;
+  };
 }
 
 export const initialState: State = {
@@ -18,11 +23,48 @@ export const initialState: State = {
     endTime: '16:00',
   },
   resourcePicker: null,
+  status: {
+    inProgress: false,
+    pending: false,
+    error: null,
+  },
 };
 
 export const reservationReducer = createReducer(
   initialState,
+  on(reservationActions.reservationNew, (state) => {
+    return {
+      ...state,
+      status: { inProgress: true, pending: false, error: null },
+    };
+  }),
   on(reservationActions.updateForm, (state, action) => {
-    return { ...state, [action.payload.path]: action.payload.value };
+    return {
+      ...state,
+      [action.payload.path]: action.payload.value,
+    };
+  }),
+  on(reservationActions.reservationAdd, (state) => {
+    return {
+      ...state,
+      status: {
+        pending: true,
+        error: null,
+        inProgress: true,
+      },
+    };
+  }),
+  on(reservationActions.reservationSuccess, () => ({ ...initialState })),
+  on(reservationActions.reservationFailure, (state, action) => {
+    return {
+      ...state,
+      status: {
+        pending: false,
+        inProgress: false,
+        error: action.payload.error,
+      },
+    };
   })
 );
+
+export const getPending = (state: State) => state.status.pending;

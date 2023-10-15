@@ -11,6 +11,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatNativeDateModule,
     MatSelectModule,
     MatSlideToggleModule,
+    MatProgressBarModule,
   ],
   exports: [
     MatButtonModule,
@@ -40,6 +42,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatNativeDateModule,
     MatSelectModule,
     MatSlideToggleModule,
+    MatProgressBarModule,
   ],
 })
 export class MaterialModule {}

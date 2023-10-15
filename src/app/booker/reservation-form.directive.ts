@@ -56,7 +56,6 @@ export class ReservationFormDirective implements OnInit, OnDestroy {
         // filter(({ payload }) => payload.path === this.path)
       )
       .subscribe(() => {
-        this.formGroupDirective.form.reset();
         this.success.emit();
       });
 

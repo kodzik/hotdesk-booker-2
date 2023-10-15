@@ -9,8 +9,8 @@ const routes: Routes = [
     path: '',
     component: BookerComponent,
     children: [
-      { path: 'live-view', component: LiveViewComponent },
       { path: 'reservation', component: ReservationStepperComponent },
+      { path: '**', component: LiveViewComponent },
     ],
   },
 ];
