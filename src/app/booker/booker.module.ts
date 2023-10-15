@@ -21,7 +21,7 @@ import { SelectionsComponent } from './components/selections/selections.componen
 import { SelectionItemComponent } from './components/selection-item/selection-item.component';
 import { ReservationStepperComponent } from './containers/reservation-stepper/reservation-stepper.component';
 import { MapComponent } from './components/map/map.component';
-import { ReservationFormDirective } from './reservation-form.directive';
+import { ReservationFormDirective } from './directives/reservation-form.directive';
 import { FormGroupDirective } from '@angular/forms';
 import { ReservationEffects } from './effects/reservation.effects';
 

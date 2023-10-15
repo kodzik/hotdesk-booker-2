@@ -7,12 +7,12 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { FormGroupDirective } from '@angular/forms';
-import * as reservationActions from './actions/reservation.actions';
+import * as reservationActions from '../actions/reservation.actions';
 import { Store } from '@ngrx/store';
 import { Subscription, debounceTime, filter, take } from 'rxjs';
-import { ResourcesState } from './reducers';
+import { ResourcesState } from '../reducers';
 import { Actions, ofType } from '@ngrx/effects';
-import * as fromReservation from './actions/reservation.actions';
+import * as fromReservation from '../actions/reservation.actions';
 
 @Directive({
   selector: '[appReservationForm]',

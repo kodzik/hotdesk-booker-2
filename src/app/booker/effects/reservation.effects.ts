@@ -2,7 +2,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as fromReservation from '../actions/reservation.actions';
 import { Injectable } from '@angular/core';
 import { switchMap, of, map, catchError } from 'rxjs';
-import { ReservationService } from '../reservation.service';
+import { ReservationService } from '../services/reservation.service';
 
 @Injectable()
 export class ReservationEffects {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, delay, of } from 'rxjs';
-import { DatePicker } from './_models/datepicker';
-import { Resource } from '../_models/resource';
+import { DatePicker } from './../_models/datepicker';
+import { Resource } from '../../_models/resource';
 
 @Injectable({
   providedIn: 'root',
