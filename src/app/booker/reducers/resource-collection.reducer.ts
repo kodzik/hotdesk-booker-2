@@ -12,7 +12,7 @@ export interface State extends EntityState<Resource> {}
 
 export const initialState: State = resourcesAdapter.getInitialState();
 
-export const resourceListReducer = createReducer(
+export const resourceCollectionReducer = createReducer(
   initialState,
 
   on(ResourceListApiActions.fetchSuccess, (state, action) => {

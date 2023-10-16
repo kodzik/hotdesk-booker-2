@@ -1,5 +1,5 @@
 import * as fromSearch from './search.reducer';
-import * as fromResourceList from './resource-list.reducer';
+import * as fromResourceCollection from './resource-collection.reducer';
 import {
   Action,
   combineReducers,
@@ -11,7 +11,7 @@ export const resourcesFeatureKey = 'resources';
 
 export interface ResourcesState {
   [fromSearch.searchFeatureKey]: fromSearch.State;
-  [fromResourceList.resourcesFeatureKey]: fromResourceList.State;
+  [fromResourceCollection.resourcesFeatureKey]: fromResourceCollection.State;
 }
 
 export function resourceReducers(
@@ -20,8 +20,8 @@ export function resourceReducers(
 ) {
   return combineReducers({
     [fromSearch.searchFeatureKey]: fromSearch.reducer,
-    [fromResourceList.resourcesFeatureKey]:
-      fromResourceList.resourceListReducer,
+    [fromResourceCollection.resourcesFeatureKey]:
+      fromResourceCollection.resourceCollectionReducer,
   })(state, action);
 }
 
@@ -48,4 +48,6 @@ export const {
   selectEntities: selectResourceEntities,
   selectAll: selectAllResources,
   selectTotal: selectTotalResources,
-} = fromResourceList.resourcesAdapter.getSelectors(selectResourceEntitiesState);
+} = fromResourceCollection.resourcesAdapter.getSelectors(
+  selectResourceEntitiesState
+);
