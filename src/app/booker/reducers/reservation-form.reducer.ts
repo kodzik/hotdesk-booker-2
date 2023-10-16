@@ -3,9 +3,9 @@ import * as reservationActions from '../actions/reservation.actions';
 import { DatePicker } from '../_models/datepicker';
 import { Resource } from 'src/app/_models/resource';
 
-export const reservationFeatureKey = 'reservation';
+export const reservationFormFeatureKey = 'reservationForm';
 
-export interface State {
+export interface reservationFormState {
   datePicker: DatePicker;
   resourcePicker: Resource;
   status: {
@@ -15,7 +15,7 @@ export interface State {
   };
 }
 
-export const initialState: State = {
+export const initialState: reservationFormState = {
   datePicker: {
     startDate: new Date(),
     endDate: new Date(),
@@ -30,7 +30,7 @@ export const initialState: State = {
   },
 };
 
-export const reservationReducer = createReducer(
+export const reservationFormReducer = createReducer(
   initialState,
   on(reservationActions.reservationNew, (state) => {
     return {
@@ -67,4 +67,4 @@ export const reservationReducer = createReducer(
   })
 );
 
-export const getPending = (state: State) => state.status.pending;
+export const getPending = (state: reservationFormState) => state.status.pending;

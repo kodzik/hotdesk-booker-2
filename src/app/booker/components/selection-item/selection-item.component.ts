@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as fromReservation from '../../reducers';
+import { fromReservation } from '../../reducers';
 import { DatePicker } from '../../_models/datepicker';
 import { Resource } from 'src/app/_models/resource';
 import { Subscription } from 'rxjs';

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import * as actions from '../../actions/resource-list.actions';
-import * as fromResourceList from '../../reducers';
+import { fromResource } from '../../reducers';
 import { Resource } from 'src/app/_models/resource';
 import { MatTableDataSource } from '@angular/material/table';
 import {
@@ -65,7 +65,7 @@ export class ResourceListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.resources$ = this.store.select(fromResourceList.selectAllResources);
+    this.resources$ = this.store.select(fromResource.selectAllResources);
     this.store.dispatch(actions.queryResources());
 
     this.form = this.ctrlContainer.form;

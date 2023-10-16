@@ -10,7 +10,7 @@ import { FormGroupDirective } from '@angular/forms';
 import * as reservationActions from '../actions/reservation.actions';
 import { Store } from '@ngrx/store';
 import { Subscription, debounceTime, filter, take } from 'rxjs';
-import { ResourcesState } from '../reducers';
+import { ReservationState } from '../reducers/reservation.reducers';
 import { Actions, ofType } from '@ngrx/effects';
 import * as fromReservation from '../actions/reservation.actions';
 
@@ -28,14 +28,14 @@ export class ReservationFormDirective implements OnInit, OnDestroy {
 
   constructor(
     private formGroupDirective: FormGroupDirective,
-    private store: Store<ResourcesState>,
+    private store: Store<ReservationState>,
     private actions$: Actions
   ) {}
 
   ngOnInit() {
     this.store
       .select((state) => {
-        return state.resources['reservation'][this.path];
+        return state['reservation'].reservationForm[this.path];
       })
       .pipe(take(1))
       .subscribe((val) => {

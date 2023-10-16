@@ -12,7 +12,8 @@ import { MaterialModule } from '../material';
 import { SharedModule } from '../_shared/shared/shared.module';
 import { CommonModule } from '@angular/common';
 
-import * as fromResourceList from './reducers';
+import { fromResource, fromReservation } from './reducers';
+
 import { ReservationComponent } from './containers/reservation/reservation.component';
 import { LiveViewPageEffects } from './effects/live-view-page.effects';
 import { BookerComponent } from './containers/booker/booker.component';
@@ -43,8 +44,12 @@ import { ReservationEffects } from './effects/reservation.effects';
     HttpClientModule,
     BookerRoutingModule,
     StoreModule.forFeature(
-      fromResourceList.resourcesFeatureKey,
-      fromResourceList.reducers
+      fromResource.resourcesFeatureKey,
+      fromResource.resourceReducers
+    ),
+    StoreModule.forFeature(
+      fromReservation.reservationFeatureKey,
+      fromReservation.reservationReducers
     ),
     EffectsModule.forFeature([
       ResourceListEffects,
