@@ -37,10 +37,10 @@ describe('SignInComponent', () => {
   });
 
   it('should get form controls', () => {
-    expect(component['f']).toBeTruthy();
+    expect(component['formControls']).toBeTruthy();
   });
 
-  it('signIn should dispatch add action', () => {
+  it('signIn should dispatch signIn action', () => {
     const credentials: Credentials = {
       username: 'test',
       password: 'test',

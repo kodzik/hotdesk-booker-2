@@ -8,7 +8,7 @@ import { Resource } from '../../_models/resource';
 import { Action } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { Actions } from '@ngrx/effects';
-import { ResourceListService } from '../resource-list.service';
+import { ResourceListService } from '../services/resource-list.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { mockResources } from '../../_test_data/mock_data';
 

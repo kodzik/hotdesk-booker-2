@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import * as actions from '../../actions/resource-list.actions';
-import * as fromResourceList from '../../reducers';
+import { fromResource } from '../../reducers';
 import { Resource } from 'src/app/_models/resource';
 import { MatTableDataSource } from '@angular/material/table';
 import {
@@ -12,6 +12,12 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import {
+  FormBuilder,
+  FormGroup,
+  FormGroupDirective,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-resource-list',
@@ -28,7 +34,10 @@ import {
     ]),
   ],
 })
-export class ResourceListComponent {
+export class ResourceListComponent implements OnInit {
+  form: FormGroup;
+  resourcePicker: FormGroup;
+
   resources$: Observable<Resource[]>;
   // loading$: Observable<boolean>;
 
@@ -39,11 +48,28 @@ export class ResourceListComponent {
   columnsToDisplay = ['name', 'available', 'reserved'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
 
-  constructor(private store: Store) {
-    this.resources$ = this.store.select(fromResourceList.selectAllResources);
+  constructor(
+    private store: Store,
+    private ctrlContainer: FormGroupDirective,
+    private fb: FormBuilder
+  ) {
     // this.loading$ = this.store.select(fromResourceList.selectSearchLoading);
+    this.resourcePicker = this.fb.group({
+      id: [null, Validators.required],
+      available: null,
+      name: '',
+      reserved: null,
+      bounds: null,
+      category: null,
+    });
+  }
 
+  ngOnInit(): void {
+    this.resources$ = this.store.select(fromResource.selectAllResources);
     this.store.dispatch(actions.queryResources());
+
+    this.form = this.ctrlContainer.form;
+    if (this.form) this.form.addControl('resourcePicker', this.resourcePicker);
 
     this.resourcesAsMatTableDataSource$ = this.resources$.pipe(
       map((resources) => {
@@ -56,5 +82,9 @@ export class ResourceListComponent {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  onResourceSelected(row: Resource) {
+    this.resourcePicker.patchValue({ ...row });
   }
 }

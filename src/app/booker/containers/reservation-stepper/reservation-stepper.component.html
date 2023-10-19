@@ -1,0 +1,51 @@
+<mat-stepper [linear]="true" #stepper>
+  <mat-step label="Choose date" [stepControl]="datePicker">
+    <div
+      style="display: flex; flex-direction: row; justify-content: space-between"
+    >
+      <app-reservation [mapToggle]="false" style="width: 100%">
+        <form [formGroup]="datePicker">
+          <mat-card>
+            <app-date-picker></app-date-picker>
+          </mat-card>
+        </form>
+      </app-reservation>
+    </div>
+    <button mat-button matStepperNext>Next</button>
+  </mat-step>
+
+  <mat-step label="Choose resource" [stepControl]="resourcePicker">
+    <app-reservation (viewMode)="toggleViewMode($event)">
+      <form [formGroup]="resourcePicker">
+        <app-resource-list
+          *ngIf="viewModeMap; else viewModeTable"
+        ></app-resource-list>
+      </form>
+    </app-reservation>
+    <ng-template #viewModeTable>
+      <app-map></app-map>
+    </ng-template>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+
+  <mat-step label="Summary">
+    <div>
+      <app-reservation [mapToggle]="false" style="width: 100%">
+      </app-reservation>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-raised-button color="primary" (click)="onSubmit()">
+        Confirm reservation
+      </button>
+    </div>
+  </mat-step>
+  <mat-step label="Done">
+    <div>
+      Reservation made successfully
+      <button mat-raised-button color="primary" (click)="onAccept()">OK</button>
+    </div>
+  </mat-step>
+</mat-stepper>
+<mat-progress-bar *ngIf="isPending$ | async" mode="query"></mat-progress-bar>

@@ -9,12 +9,9 @@ const routes: Routes = [
     path: 'account',
     component: LayoutComponent,
     children: [
+      { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
       { path: 'sign-in', component: SignInComponent },
       { path: 'sign-up', component: SignUpComponent },
-
-      { path: '**', redirectTo: 'sign-in' }, //, pathMatch: 'full'
-      // { path: 'verify-email', component: VerifyEmailComponent },
-      // { path: 'forgot-password', component: ForgotPasswordComponent },
     ],
   },
 ];

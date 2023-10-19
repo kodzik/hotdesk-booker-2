@@ -2,9 +2,9 @@ import { Resource } from 'src/app/_models/resource';
 import { ResourceListApiActions } from '../actions';
 import {
   initialState,
-  resourceListReducer,
+  resourceCollectionReducer,
   State,
-} from './resource-list.reducer';
+} from './resource-collection.reducer';
 
 describe('ResourceListReducer', () => {
   describe('unknown action', () => {
@@ -12,7 +12,7 @@ describe('ResourceListReducer', () => {
       const action = {
         type: 'Unknown',
       };
-      const state = resourceListReducer(initialState, action);
+      const state = resourceCollectionReducer(initialState, action);
 
       expect(state).toBe(initialState);
     });
@@ -21,14 +21,14 @@ describe('ResourceListReducer', () => {
       it('should add resource and update state', () => {
         const newResources: Resource[] = [
           {
-            id: 'some_id',
+            id: 1,
             name: 'cosy_desk',
             available: true,
             reserved: false,
           },
         ];
         const newState: State = {
-          ids: ['some_id'],
+          ids: [1],
           entities: {
             some_id: newResources[0],
           },
@@ -36,7 +36,7 @@ describe('ResourceListReducer', () => {
         const action = ResourceListApiActions.fetchSuccess({
           payload: newResources,
         });
-        const state = resourceListReducer(initialState, action);
+        const state = resourceCollectionReducer(initialState, action);
 
         expect(state).toEqual(newState);
         expect(state).not.toEqual(initialState);

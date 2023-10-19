@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { ReservationActions } from '../../actions';
 
 @Component({
   selector: 'app-live-view',
@@ -9,6 +11,14 @@ import { Component } from '@angular/core';
       </mat-card>
       <mat-card class="resource-list">
         <app-resource-list></app-resource-list>
+        <button
+          id="reserveResourceBtn"
+          mat-raised-button
+          color="primary"
+          (click)="reserveResource()"
+        >
+          Go to booking
+        </button>
       </mat-card>
     </div>
   `,
@@ -26,10 +36,18 @@ import { Component } from '@angular/core';
       }
 
       .resource-list {
+        display: flex;
+        justify-content: space-between;
         width: 30%;
         margin: 0.5rem;
       }
     `,
   ],
 })
-export class LiveViewComponent {}
+export class LiveViewComponent {
+  constructor(private store: Store) {}
+
+  reserveResource() {
+    this.store.dispatch(ReservationActions.reservationNew());
+  }
+}

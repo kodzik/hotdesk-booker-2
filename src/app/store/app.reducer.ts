@@ -1,5 +1,5 @@
 import { ActionReducerMap } from '@ngrx/store';
-import * as fromResourceList from '../booker/reducers/resource-list.reducer';
+import * as fromResourceCollection from '../booker/reducers/resource-collection.reducer';
 
 // export interface AppState {
 //   resourceList: fromResourceList.resourceState;
@@ -7,5 +7,5 @@ import * as fromResourceList from '../booker/reducers/resource-list.reducer';
 
 //TODO fix 'any' type
 export const appReducer: ActionReducerMap<any> = {
-  resourceList: fromResourceList.resourceListReducer,
+  resourceList: fromResourceCollection.resourceCollectionReducer,
 };

@@ -45,6 +45,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           return getUsers();
         case url.endsWith('/resources') && method === 'GET':
           return getResources();
+        case url.match(/\/resources\/\d+$/) && method === 'GET':
+          return getResourceById();
         case url.match(/\/users\/\d+$/) && method === 'GET':
           return getUserById();
         case url.match(/\/users\/\d+$/) && method === 'PUT':
@@ -59,6 +61,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     // route functions
 
+    function getResourceById() {
+      const resource = resources.find(
+        (resource) => resource.id === idFromUrl()
+      );
+      if (!resource) return error('Username or password is incorrect');
+      return ok(resource);
+    }
+
     function getResources() {
       localStorage.setItem(
         'resources',
@@ -70,7 +80,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     function authenticate() {
       const { username, password } = body;
       const user = users.find(
-        (x) => x.username === username && x.password === password
+        (user) => user.username === username && user.password === password
       );
 
       if (!user) return error('Username or password is incorrect');
