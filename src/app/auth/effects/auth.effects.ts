@@ -25,7 +25,7 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthApiActions.signInSuccess),
-        tap(() => this.router.navigate(['/booker/live-view']))
+        tap(() => this.router.navigate(['/booker']))
       ),
     { dispatch: false }
   );

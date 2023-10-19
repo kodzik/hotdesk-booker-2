@@ -25,6 +25,7 @@ import { MapComponent } from './components/map/map.component';
 import { ReservationFormDirective } from './directives/reservation-form.directive';
 import { FormGroupDirective } from '@angular/forms';
 import { ReservationEffects } from './effects/reservation.effects';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { ReservationEffects } from './effects/reservation.effects';
     ]),
     SharedModule,
     MaterialModule,
+    CoreModule,
   ],
   providers: [FormGroupDirective],
 })

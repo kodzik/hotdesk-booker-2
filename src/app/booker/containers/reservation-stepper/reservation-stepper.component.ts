@@ -42,7 +42,7 @@ export class ReservationStepperComponent implements OnInit {
   }
 
   onAccept() {
-    this.router.navigateByUrl('booker/live-view');
+    this.router.navigateByUrl('booker/live');
   }
 
   onSubmit() {

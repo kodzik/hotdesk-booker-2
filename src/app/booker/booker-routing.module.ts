@@ -6,11 +6,12 @@ import { ReservationStepperComponent } from './containers/reservation-stepper/re
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'booker',
     component: BookerComponent,
     children: [
+      { path: '', redirectTo: 'live', pathMatch: 'full' },
+      { path: 'live', component: LiveViewComponent },
       { path: 'reservation', component: ReservationStepperComponent },
-      { path: '**', component: LiveViewComponent },
     ],
   },
 ];
