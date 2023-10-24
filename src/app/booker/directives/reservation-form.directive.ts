@@ -7,12 +7,12 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { FormGroupDirective } from '@angular/forms';
-import * as reservationActions from '../actions/reservation.actions';
+import * as reservationActions from '../actions/reservation-form.actions';
 import { Store } from '@ngrx/store';
 import { Subscription, debounceTime, filter, take } from 'rxjs';
 import { ReservationState } from '../reducers/reservation.reducers';
 import { Actions, ofType } from '@ngrx/effects';
-import * as fromReservation from '../actions/reservation.actions';
+import * as fromReservation from '../actions/reservation-form.actions';
 
 @Directive({
   selector: '[appReservationForm]',
@@ -51,19 +51,13 @@ export class ReservationFormDirective implements OnInit, OnDestroy {
       });
 
     this.formSuccess = this.actions$
-      .pipe(
-        ofType(fromReservation.reservationSuccess)
-        // filter(({ payload }) => payload.path === this.path)
-      )
+      .pipe(ofType(fromReservation.reservationSuccess))
       .subscribe(() => {
         this.success.emit();
       });
 
     this.formError = this.actions$
-      .pipe(
-        ofType(fromReservation.reservationFailure)
-        // filter(({ payload }) => payload.path === this.path)
-      )
+      .pipe(ofType(fromReservation.reservationFailure))
       .subscribe(({ payload }) => this.error.emit(payload.error));
   }
 

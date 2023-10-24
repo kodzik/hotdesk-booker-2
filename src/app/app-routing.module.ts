@@ -9,7 +9,10 @@ const BookerModule = () =>
 const routes: Routes = [
   { path: '', redirectTo: 'account', pathMatch: 'full' },
   { path: 'account', loadChildren: AuthModule },
-  { path: 'booker', loadChildren: BookerModule },
+  {
+    path: 'booker',
+    loadChildren: BookerModule,
+  },
   { path: '**', component: PageNotFoundComponent }, //, pathMatch: 'full'
 ];
 @NgModule({

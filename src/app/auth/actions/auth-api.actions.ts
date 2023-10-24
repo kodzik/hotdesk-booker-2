@@ -3,7 +3,7 @@ import { User } from 'src/app/_models/user';
 
 export const signInSuccess = createAction(
   '[Auth/API] SignIn Success',
-  props<{ user: User }>()
+  props<{ user: Pick<User, 'id'> }>()
 );
 
 export const signInFailure = createAction(

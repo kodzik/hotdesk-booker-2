@@ -10,12 +10,12 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  login({ username, password }: Credentials): Observable<User> {
+  login({ username, password }: Credentials): Observable<Pick<User, 'id'>> {
     return this.http
-      .post<User>('/users/authenticate', {
+      .post<Pick<User, 'id'>>('/users/authenticate', {
         username: username,
         password: password,
       })
-      .pipe(map((res) => ({ username: res.username })));
+      .pipe(map((res) => ({ id: res.id })));
   }
 }

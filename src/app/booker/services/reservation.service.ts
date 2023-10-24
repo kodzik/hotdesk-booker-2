@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Observable, delay, of } from 'rxjs';
-import { DatePicker } from './../_models/datepicker';
-import { Resource } from '../../_models/resource';
+import { Observable } from 'rxjs';
+import { Reservation } from 'src/app/_models/reservation';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReservationService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  addReservation(payload: {
-    datePicker: DatePicker;
-    resource: Resource;
-  }): Observable<{ reservationId: string }> {
-    return of({ reservationId: 'elo' }).pipe(delay(1000)); // delay observable to simulate server api call
+  addReservation(reservation: Partial<Reservation>): Observable<Reservation> {
+    return this.http.post<Reservation>('/reservations', reservation);
   }
 }

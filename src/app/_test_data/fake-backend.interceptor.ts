@@ -10,20 +10,15 @@ import {
 import { Observable, of, throwError, map } from 'rxjs';
 import { delay, materialize, dematerialize } from 'rxjs/operators';
 import * as test_resources from './fake-backend-resources';
-import { Resource } from '../_models/resource';
-import { User } from '../_models/user';
 import { users } from '../_test_data/fake-backend-resources';
+import { Reservation } from '../_models/reservation';
+import { v4 as uuidv4 } from 'uuid';
 
 // array in local storage for registered users
 const usersKey = 'users';
-const resourcesKey = 'resources';
 
 // TODO fix to load users to localstore on init
 // let users: any[] = JSON.parse(localStorage.getItem(usersKey)!) || [];
-// let users: User[] =
-
-let resources: Resource[] =
-  JSON.parse(localStorage.getItem(resourcesKey)!) || [];
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -45,8 +40,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           return getUsers();
         case url.endsWith('/resources') && method === 'GET':
           return getResources();
-        case url.match(/\/resources\/\d+$/) && method === 'GET':
-          return getResourceById();
+        case url.endsWith('/reservations') && method === 'POST':
+          return newReservation(body);
         case url.match(/\/users\/\d+$/) && method === 'GET':
           return getUserById();
         case url.match(/\/users\/\d+$/) && method === 'PUT':
@@ -61,20 +56,20 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     // route functions
 
-    function getResourceById() {
-      const resource = resources.find(
-        (resource) => resource.id === idFromUrl()
-      );
-      if (!resource) return error('Username or password is incorrect');
-      return ok(resource);
+    function getResources() {
+      return ok(test_resources.resources);
     }
 
-    function getResources() {
-      localStorage.setItem(
-        'resources',
-        JSON.stringify(test_resources.resources)
+    function newReservation(body: Omit<Reservation, 'id'>) {
+      const newReservation = new Reservation(
+        uuidv4(),
+        body.userId,
+        body.resourceId,
+        body.timeSlot
       );
-      return ok(resources);
+      return newReservation
+        ? ok(newReservation)
+        : error('Error while creating reservation.');
     }
 
     function authenticate() {
@@ -164,8 +159,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     }
 
     function basicDetails(user: any) {
-      const { id, username, firstName, lastName } = user;
-      return { id, username, firstName, lastName };
+      const { id, username } = user;
+      return { id, username };
     }
 
     function isLoggedIn() {

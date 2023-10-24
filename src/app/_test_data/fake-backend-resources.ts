@@ -1,7 +1,7 @@
 import { Resource } from '../_models/resource';
 import { User } from '../_models/user';
 
-export const users: User[] = [{ username: 'test', password: 'test' }];
+export const users: User[] = [{ id: 1, username: 'test', password: 'test' }];
 
 export const resources: Resource[] = [
   {
