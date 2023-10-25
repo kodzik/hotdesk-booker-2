@@ -4,6 +4,7 @@ import { LiveViewComponent } from './containers/live-view/live-view.component';
 import { BookerComponent } from './containers/booker/booker.component';
 import { ReservationStepperComponent } from './containers/reservation-stepper/reservation-stepper.component';
 import { authGuard } from '../auth/guards/auth.guard';
+import { MyReservationsComponent } from './containers/my-reservations/my-reservations.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'live', pathMatch: 'full' },
       { path: 'live', component: LiveViewComponent },
       { path: 'reservation', component: ReservationStepperComponent },
+      { path: 'my-reservations', component: MyReservationsComponent },
     ],
   },
 ];

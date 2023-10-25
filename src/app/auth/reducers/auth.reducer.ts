@@ -5,7 +5,7 @@ import { User } from 'src/app/_models/user';
 export const statusFeatureKey = 'status';
 
 export interface State {
-  user: Pick<User, 'id'> | null;
+  user: User | null;
 }
 
 export const initialState: State = {

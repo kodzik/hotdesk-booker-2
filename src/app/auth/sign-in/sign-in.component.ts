@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   UntypedFormBuilder,
   UntypedFormGroup,
@@ -15,7 +15,7 @@ import { Observable, map } from 'rxjs';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss'],
 })
-export class SignInComponent {
+export class SignInComponent implements OnInit {
   //TODO fix view errors
   submitted = false;
 
@@ -25,16 +25,18 @@ export class SignInComponent {
   form: UntypedFormGroup = new UntypedFormGroup({});
 
   constructor(private formBuilder: UntypedFormBuilder, private store: Store) {
+    this.form = this.formBuilder.group({
+      username: ['test', [Validators.required]],
+      password: ['test', Validators.required],
+    });
+  }
+
+  ngOnInit(): void {
     this.error$ = this.store
       .select(AuthSelectors.selectSignInPageError)
       .pipe(map((error) => (error ? error.error.message : error)));
 
     this.pending$ = this.store.select(AuthSelectors.selectSignInPagePending);
-
-    this.form = this.formBuilder.group({
-      username: ['test', [Validators.required]],
-      password: ['test', Validators.required],
-    });
   }
 
   get formControls() {

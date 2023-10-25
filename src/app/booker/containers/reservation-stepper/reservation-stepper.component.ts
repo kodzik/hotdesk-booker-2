@@ -1,4 +1,10 @@
-import { Component, ViewChild, OnInit, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  OnInit,
+  OnDestroy,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as fromReservationActions from '../../actions/reservation.actions';
@@ -15,7 +21,7 @@ import { Reservation } from 'src/app/_models/reservation';
   templateUrl: './reservation-stepper.component.html',
   styleUrls: ['./reservation-stepper.component.scss'],
 })
-export class ReservationStepperComponent implements OnInit {
+export class ReservationStepperComponent implements OnInit, OnDestroy {
   @ViewChild('stepper') private formStepper: MatStepper;
 
   datePicker: FormGroup;
@@ -66,5 +72,9 @@ export class ReservationStepperComponent implements OnInit {
     this.isPending$.subscribe((isPending) => {
       if (!isPending) this.formStepper.next();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.currentUser$.unsubscribe();
   }
 }

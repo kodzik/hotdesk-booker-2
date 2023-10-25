@@ -40,6 +40,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           return getUsers();
         case url.endsWith('/resources') && method === 'GET':
           return getResources();
+        case url.endsWith('/reservations') && method === 'GET':
+          return getReservations();
         case url.endsWith('/reservations') && method === 'POST':
           return newReservation(body);
         case url.match(/\/users\/\d+$/) && method === 'GET':
@@ -55,9 +57,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     }
 
     // route functions
-
     function getResources() {
       return ok(test_resources.resources);
+    }
+
+    function getReservations() {
+      const reservations = JSON.parse(localStorage.getItem('reservation'));
+      return ok(Object.values(reservations.reservations.entities));
+      // #TODO fix error
     }
 
     function newReservation(body: Omit<Reservation, 'id'>) {

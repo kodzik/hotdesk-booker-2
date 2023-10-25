@@ -26,6 +26,8 @@ import { ReservationFormDirective } from './directives/reservation-form.directiv
 import { FormGroupDirective } from '@angular/forms';
 import { ReservationEffects } from './effects/reservation.effects';
 import { CoreModule } from '../core/core.module';
+import { MyReservationsComponent } from './containers/my-reservations/my-reservations.component';
+import { MyReservationItemComponent } from './components/my-reservation-item/my-reservation-item.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { CoreModule } from '../core/core.module';
     ReservationStepperComponent,
     MapComponent,
     ReservationFormDirective,
+    MyReservationsComponent,
+    MyReservationItemComponent,
   ],
   imports: [
     CommonModule,

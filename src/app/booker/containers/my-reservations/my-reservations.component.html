@@ -1,0 +1,3 @@
+<div *ngFor="let item of reservations$ | async as list">
+  <app-my-reservation-item [item]="item"></app-my-reservation-item>
+</div>
