@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Reservation } from 'src/app/_models/reservation';
+import { Reservation } from 'src/app/booker/_models/reservation';
 
 export const reservationNew = createAction('[Reservation Form] New');
 

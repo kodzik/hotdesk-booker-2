@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, filter, map } from 'rxjs';
-import { Reservation } from 'src/app/_models/reservation';
+import { Observable, map } from 'rxjs';
+import { Reservation } from 'src/app/booker/_models/reservation';
 import { HttpClient } from '@angular/common/http';
-import { User } from 'src/app/_models/user';
 
 @Injectable({
   providedIn: 'root',

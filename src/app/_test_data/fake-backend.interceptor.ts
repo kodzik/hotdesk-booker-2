@@ -11,7 +11,7 @@ import { Observable, of, throwError, map } from 'rxjs';
 import { delay, materialize, dematerialize } from 'rxjs/operators';
 import * as test_resources from './fake-backend-resources';
 import { users } from '../_test_data/fake-backend-resources';
-import { Reservation } from '../_models/reservation';
+import { Reservation } from '../booker/_models/reservation';
 import { v4 as uuidv4 } from 'uuid';
 
 // array in local storage for registered users

@@ -1,4 +1,4 @@
-import { Resource } from 'src/app/_models/resource';
+import { Resource } from 'src/app/booker/_models/resource';
 import { ResourceListApiActions } from '../actions';
 import {
   initialState,

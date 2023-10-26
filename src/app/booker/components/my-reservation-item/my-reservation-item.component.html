@@ -1,5 +1,13 @@
-<mat-card>
+<mat-card style="margin: 1rem">
   <mat-card-content>
-    Resource: {{ item.resourceId }} Time: {{ item.timeSlot.start | date }}
+    <p>
+      Date: {{ item.timeSlot.startDate | date }} -
+      {{ item.timeSlot.endDate | date }}
+    </p>
+    <p>
+      Time: {{ item.timeSlot.startDate | date : "HH:mm" }} -
+      {{ item.timeSlot.endDate | date : "HH:mm" }}
+    </p>
+    <p>Resource: {{ item.resourceId }}</p>
   </mat-card-content>
 </mat-card>

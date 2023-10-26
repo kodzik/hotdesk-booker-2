@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import * as fromFormActions from '../actions/reservation-form.actions';
 import * as fromReservationActions from '../actions/reservation.actions';
 import { DatePicker } from '../_models/datepicker';
-import { Resource } from 'src/app/_models/resource';
+import { Resource } from 'src/app/booker/_models/resource';
 
 export const reservationFormFeatureKey = 'reservationForm';
 

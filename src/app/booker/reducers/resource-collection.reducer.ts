@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Resource } from '../../_models/resource';
+import { Resource } from '../_models/resource';
 import { ResourceListApiActions } from '../actions';
 import { createEntityAdapter } from '@ngrx/entity';
 import { EntityState } from '@ngrx/entity/src';

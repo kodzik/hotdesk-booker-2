@@ -3,7 +3,7 @@ import { ReservationService } from '../../services/reservation.service';
 import { Store } from '@ngrx/store';
 import { selectAuthStatusUser } from 'src/app/auth/selectors/auth.selectors';
 import { Observable, Subscription } from 'rxjs';
-import { Reservation } from 'src/app/_models/reservation';
+import { Reservation } from 'src/app/booker/_models/reservation';
 
 @Component({
   selector: 'app-my-reservations',

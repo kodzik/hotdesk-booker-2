@@ -1,4 +1,4 @@
-import { Resource } from '../_models/resource';
+import { Resource } from '../booker/_models/resource';
 
 export const mockResources: Resource[] = [
   {

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Reservation } from 'src/app/_models/reservation';
+import { Reservation } from 'src/app/booker/_models/reservation';
 
 @Component({
   selector: 'app-my-reservation-item',

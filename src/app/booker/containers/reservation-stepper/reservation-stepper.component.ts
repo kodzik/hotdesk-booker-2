@@ -14,7 +14,9 @@ import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/_models/user';
 import { selectAuthStatusUser } from 'src/app/auth/selectors/auth.selectors';
-import { Reservation } from 'src/app/_models/reservation';
+import { Reservation } from 'src/app/booker/_models/reservation';
+import { DatePicker } from '../../_models/datepicker';
+import { ReservationTimeSlot } from '../../_models/reservationTimeSlot';
 
 @Component({
   selector: 'app-reservation-stepper',
@@ -28,6 +30,7 @@ export class ReservationStepperComponent implements OnInit, OnDestroy {
   resourcePicker: FormGroup;
   viewModeMap: boolean = true;
   isPending$: Observable<boolean>;
+  pending$: Subscription;
   currentUser$: Subscription;
   currentUser: Pick<User, 'id'>;
 
@@ -59,22 +62,34 @@ export class ReservationStepperComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('booker/live');
   }
 
+  datePickerConverter(datePickerValue: any): ReservationTimeSlot {
+    const { startDate, endDate, startTime, endTime }: DatePicker =
+      datePickerValue.datePicker;
+    return new ReservationTimeSlot(startDate, endDate, startTime, endTime);
+  }
+
+  resourcePickerGetId(resourcePicker): number {
+    return resourcePicker.resourcePicker['id'];
+  }
+
   onSubmit() {
     const newReservation: Omit<Reservation, 'id'> = {
       userId: this.currentUser.id,
-      timeSlot: this.datePicker.value,
-      resourceId: this.resourcePicker.value,
+      timeSlot: this.datePickerConverter(this.datePicker.value),
+      resourceId: this.resourcePickerGetId(this.resourcePicker.value),
     };
 
     this.store.dispatch(
       fromReservationActions.add({ payload: newReservation })
     );
-    this.isPending$.subscribe((isPending) => {
+    this.pending$ = this.isPending$.subscribe((isPending) => {
       if (!isPending) this.formStepper.next();
     });
   }
 
   ngOnDestroy(): void {
+    // #TODO fix pending unsubscribe errror
+    this.pending$.unsubscribe();
     this.currentUser$.unsubscribe();
   }
 }

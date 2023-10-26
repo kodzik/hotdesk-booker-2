@@ -4,7 +4,7 @@ import { hot, cold } from 'jasmine-marbles';
 import { of, Observable, ReplaySubject, throwError } from 'rxjs';
 import { ResourceListEffects } from './resource-list.effects';
 import * as resourceListActions from '../actions/resource-list.actions';
-import { Resource } from '../../_models/resource';
+import { Resource } from '../_models/resource';
 import { Action } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { Actions } from '@ngrx/effects';

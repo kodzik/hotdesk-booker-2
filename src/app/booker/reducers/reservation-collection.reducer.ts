@@ -1,5 +1,5 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
-import { Reservation } from '../../_models/reservation';
+import { Reservation } from '../_models/reservation';
 import { createReducer, on } from '@ngrx/store';
 import { ReservationFormActions } from '../actions';
 
