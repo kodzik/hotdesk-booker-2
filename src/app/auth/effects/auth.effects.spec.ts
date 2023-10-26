@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { AuthEffects } from './auth.effects';
 import { Credentials } from '../models/credentials';
-import { User } from 'src/app/_models/user';
+import { User } from 'src/app/auth/models/user';
 import { AuthApiActions, SignInPageActions } from '../actions';
 import { Observable, of } from 'rxjs';
 import { Actions } from '@ngrx/effects';

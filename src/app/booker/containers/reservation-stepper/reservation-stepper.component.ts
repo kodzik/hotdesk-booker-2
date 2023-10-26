@@ -12,7 +12,7 @@ import { fromReservation } from '../../reducers';
 import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { User } from 'src/app/_models/user';
+import { User } from 'src/app/auth/models/user';
 import { selectAuthStatusUser } from 'src/app/auth/selectors/auth.selectors';
 import { Reservation } from 'src/app/booker/_models/reservation';
 import { DatePicker } from '../../_models/datepicker';

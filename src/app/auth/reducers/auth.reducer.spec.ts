@@ -1,4 +1,4 @@
-import { User } from 'src/app/_models/user';
+import { User } from 'src/app/auth/models/user';
 import { AuthApiActions } from '../actions';
 import { initialState, reducer, State } from './auth.reducer';
 
