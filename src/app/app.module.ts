@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
-import { SharedModule } from './_shared/shared/shared.module';
 import {
   ActionReducer,
   ActionReducerMap,
@@ -48,7 +47,6 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     BrowserModule,
     BrowserAnimationsModule,
     BookerModule,
-    SharedModule,
     MaterialModule,
 
     AppRoutingModule,
