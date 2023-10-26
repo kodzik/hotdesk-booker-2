@@ -3,7 +3,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ResourceListService } from './resource-list.service';
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
-import { mockResources } from 'src/app/_test_data/mock_data';
+import { mockResources } from 'src/app/_data/mock_data';
 import { cold } from 'jasmine-marbles';
 
 describe('ResourceListService', () => {

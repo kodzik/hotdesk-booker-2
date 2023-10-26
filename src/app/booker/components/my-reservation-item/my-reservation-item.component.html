@@ -1,4 +1,4 @@
-<mat-card style="margin: 1rem">
+<mat-card style="margin: 1rem; max-width: fit-content">
   <mat-card-content>
     <p>
       Date: {{ item.timeSlot.startDate | date }} -
@@ -10,4 +10,7 @@
     </p>
     <p>Resource: {{ item.resourceId }}</p>
   </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary">Delete</button>
+  </mat-card-actions>
 </mat-card>

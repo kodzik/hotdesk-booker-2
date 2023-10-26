@@ -10,7 +10,7 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { Actions } from '@ngrx/effects';
 import { ResourceListService } from '../services/resource-list.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { mockResources } from '../../_test_data/mock_data';
+import { mockResources } from '../../_data/mock_data';
 
 describe(`Effect: Attendess`, () => {
   // let actions$: Observable<Actions>;
