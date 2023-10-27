@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Reservation } from 'src/app/booker/_models/reservation';
+import { ReservationActions } from '../../actions';
 
 @Component({
   selector: 'app-my-reservation-item',
@@ -8,4 +10,10 @@ import { Reservation } from 'src/app/booker/_models/reservation';
 })
 export class MyReservationItemComponent {
   @Input() item: Reservation;
+
+  constructor(private store: Store) {}
+
+  deleteReservation() {
+    this.store.dispatch(ReservationActions.remove({ id: this.item.id }));
+  }
 }

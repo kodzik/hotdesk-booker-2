@@ -10,3 +10,13 @@ export const fetchFailure = createAction(
   '[Reservation/API] Query Failure',
   props<{ errorMsg: string }>()
 );
+
+export const removeSuccess = createAction(
+  '[Reservation/API] Remove Success',
+  props<{ id: string }>()
+);
+
+export const removeFailure = createAction(
+  '[Reservation/API] Remove Failure',
+  props<{ errorMsg: string }>()
+);

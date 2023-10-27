@@ -8,7 +8,9 @@ import { navigationActions } from '../../actions';
   selector: 'app-navbar',
   template: `
     <mat-toolbar color="primary">
-      <img id="logo" src="assets/logo.svg" />
+      <a [routerLink]="['/booker/live']">
+        <img id="logo" src="assets/logo.svg" />
+      </a>
       <span class="spacer"></span>
       <button
         *ngIf="isLoggedIn$ | async"

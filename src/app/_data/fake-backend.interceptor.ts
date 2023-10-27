@@ -38,16 +38,18 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           return register();
         case url.endsWith('/users') && method === 'GET':
           return getUsers();
+        case url.match(/\/users\/\d+$/) && method === 'GET':
+          return getUserById();
+        case url.match(/\/users\/\d+$/) && method === 'PUT':
+          return updateUser();
         case url.endsWith('/resources') && method === 'GET':
           return getResources();
         case url.endsWith('/reservations') && method === 'GET':
           return getReservations();
         case url.endsWith('/reservations') && method === 'POST':
           return newReservation(body);
-        case url.match(/\/users\/\d+$/) && method === 'GET':
-          return getUserById();
-        case url.match(/\/users\/\d+$/) && method === 'PUT':
-          return updateUser();
+        case url.endsWith('/reservations') && method === 'DELETE':
+          return deleteReservation();
         // case url.match(/\/users\/\d+$/) && method === 'DELETE':
         //   return deleteUser();
         default:
@@ -59,12 +61,25 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     // route functions
     function getResources() {
       return ok(test_resources.resources);
+      // #TODO add error handling
     }
 
     function getReservations() {
       const reservations = JSON.parse(localStorage.getItem('reservation'));
       return ok(Object.values(reservations.reservations.entities));
-      // #TODO fix error
+      // #TODO add error handling
+    }
+
+    function deleteReservation() {
+      let reservations = JSON.parse(localStorage.getItem('reservation'));
+      let reservationsObj: any = Object.values(
+        reservations.reservations.entities
+      );
+
+      reservationsObj = reservationsObj.filter((x) => x.id !== body);
+      // localStorage.setItem('reservation', JSON.stringify(reservations));
+
+      return ok();
     }
 
     function newReservation(body: Omit<Reservation, 'id'>) {

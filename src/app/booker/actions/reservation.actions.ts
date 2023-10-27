@@ -9,3 +9,8 @@ export const add = createAction(
   '[Reservation] Add',
   props<{ payload: Omit<Reservation, 'id'> }>()
 );
+
+export const remove = createAction(
+  '[Reservation] Remove',
+  props<{ id: string }>()
+);

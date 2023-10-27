@@ -49,3 +49,13 @@ export const selectReservationAddLoading = createSelector(
   selectReservationForm,
   fromReservationForm.getPending
 );
+
+export const selectReservationCollection = createSelector(
+  selectReservationState,
+  (state) => state.reservations
+);
+
+export const selectReservations = createSelector(
+  selectReservationCollection,
+  fromReservationCollection.getReservations
+);

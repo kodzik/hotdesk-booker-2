@@ -15,8 +15,8 @@ export class ReservationService {
     return this.http.post<Reservation>('/reservations', reservation);
   }
 
-  deleteReservation(id: string) {
-    return this.http.delete(`/reservations/${id}`);
+  removeReservation(id: string) {
+    return this.http.delete(`/reservations`, { body: id });
   }
 
   getUserReservations(userId: number): Observable<Reservation[]> {
