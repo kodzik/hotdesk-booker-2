@@ -88,8 +88,7 @@ export class ReservationStepperComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // #TODO fix pending unsubscribe errror
-    this.pending$.unsubscribe();
+    if (this.pending$) this.pending$.unsubscribe();
     this.currentUser$.unsubscribe();
   }
 }

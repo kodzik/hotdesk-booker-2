@@ -20,24 +20,20 @@ import { AppComponent } from './core/containers/app.component';
 import { fromReservation, fromResource } from './booker/reducers/';
 import { localStorageSync } from 'ngrx-store-localstorage';
 
-// const reducers: ActionReducerMap<any> = {
-//   reservation: fromReservation.reservationReducers,
-//   resources: fromResource.resourceReducers,
-// };
+const reducers: ActionReducerMap<any> = {
+  reservation: fromReservation.reservationReducers,
+  resources: fromResource.resourceReducers,
+};
 
-// export function localStorageSyncReducer(
-//   reducer: ActionReducer<any>
-// ): ActionReducer<any> {
-//   return localStorageSync({
-//     keys: [
-//       { reservation: ['reservationForm', 'reservations'] },
-//       { resources: ['resources'] },
-//       { auth: ['status'] },
-//     ],
-//     rehydrate: true,
-//   })(reducer);
-// }
-// const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
+export function localStorageSyncReducer(
+  reducer: ActionReducer<any>
+): ActionReducer<any> {
+  return localStorageSync({
+    keys: [{ reservation: ['reservations'] }, { auth: ['status'] }],
+    rehydrate: true,
+  })(reducer);
+}
+const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
 @NgModule({
   declarations: [],
@@ -50,8 +46,7 @@ import { localStorageSync } from 'ngrx-store-localstorage';
     MaterialModule,
 
     AppRoutingModule,
-    // StoreModule.forRoot(reducers, { metaReducers }),
-    StoreModule.forRoot(),
+    StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({
       trace: true,
       maxAge: 25, // Retains last 25 states

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ReservationService } from '../../services/reservation.service';
 import { Store } from '@ngrx/store';
 import { selectAuthStatusUser } from 'src/app/auth/selectors/auth.selectors';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { Reservation } from 'src/app/booker/_models/reservation';
 
 @Component({
@@ -10,8 +10,7 @@ import { Reservation } from 'src/app/booker/_models/reservation';
   templateUrl: './my-reservations.component.html',
   styleUrls: ['./my-reservations.component.scss'],
 })
-export class MyReservationsComponent implements OnInit, OnDestroy {
-  currentUser$: Subscription;
+export class MyReservationsComponent implements OnInit {
   reservations$: Observable<Reservation[]>;
 
   constructor(
@@ -20,16 +19,12 @@ export class MyReservationsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.currentUser$ = this.store
+    this.reservations$ = this.store
       .select(selectAuthStatusUser)
-      .subscribe((user) => {
-        this.reservations$ = this.reservationService.getUserReservations(
-          user.id
-        );
-      });
-  }
-
-  ngOnDestroy(): void {
-    this.currentUser$.unsubscribe();
+      .pipe(
+        switchMap((user) =>
+          this.reservationService.getUserReservations(user.id)
+        )
+      );
   }
 }

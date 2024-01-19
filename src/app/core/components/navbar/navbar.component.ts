@@ -42,7 +42,9 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn$ = this.store.select(selectAuthStatusUser).pipe(
-      tap((user) => (this.userName$ = of(user.username))),
+      tap((user) => {
+        if (user) this.userName$ = of(user.username);
+      }),
       map((user) => (user ? true : false))
     );
   }

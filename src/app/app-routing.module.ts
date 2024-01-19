@@ -7,13 +7,13 @@ const BookerModule = () =>
   import('./booker/booker.module').then((x) => x.BookerModule);
 
 const routes: Routes = [
-  { path: '', redirectTo: 'account', pathMatch: 'full' },
-  { path: 'account', loadChildren: AuthModule },
+  { path: '', redirectTo: 'booker', pathMatch: 'full' },
   {
     path: 'booker',
     loadChildren: BookerModule,
   },
-  { path: '**', component: PageNotFoundComponent }, //, pathMatch: 'full'
+  { path: 'account', loadChildren: AuthModule },
+  { path: '**', component: PageNotFoundComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
