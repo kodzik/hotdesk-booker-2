@@ -8,7 +8,7 @@ import { ReservationService } from '../services/reservation.service';
 
 @Injectable()
 export class ReservationEffects {
-  reservationAdd = createEffect(() =>
+  addReservation = createEffect(() =>
     this.actions$.pipe(
       ofType(fromReservationActions.add),
       switchMap((action) =>

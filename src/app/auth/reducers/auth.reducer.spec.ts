@@ -5,7 +5,7 @@ import { initialState, reducer, State } from './auth.reducer';
 describe('AuthReducer', () => {
   describe('signInSuccess action', () => {
     it('should update state on success', () => {
-      const user: User = { username: 'username', password: 'password' };
+      const user: User = { id: 1, username: 'username' };
       const state: State = {
         user: user,
       };

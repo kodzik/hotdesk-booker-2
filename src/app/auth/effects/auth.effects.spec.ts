@@ -23,6 +23,7 @@ describe('AuthEffects', () => {
   };
 
   const user: User = {
+    id: 1,
     username: 'test_username',
   };
 
@@ -83,7 +84,7 @@ describe('AuthEffects', () => {
       actions$ = of(action);
 
       effects.signInSuccess$.subscribe(() => {
-        expect(router.navigate).toHaveBeenCalledWith(['/booker/live-view']);
+        expect(router.navigate).toHaveBeenCalledWith(['/booker']);
         done();
       });
     });

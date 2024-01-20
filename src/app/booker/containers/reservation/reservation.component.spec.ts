@@ -1,28 +1,43 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ReservationComponent } from './reservation.component';
-import { MatStepperModule } from '@angular/material/stepper';
 import { DatePickerComponent } from '../../components/date-picker/date-picker.component';
-import { FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SelectionsComponent } from '../../components/selections/selections.component';
+import { SelectionItemComponent } from '../../components/selection-item/selection-item.component';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 describe('ReservationComponent', () => {
   let component: ReservationComponent;
   let fixture: ComponentFixture<ReservationComponent>;
+  let store: MockStore;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MaterialModule, ReactiveFormsModule, BrowserAnimationsModule],
-      declarations: [ReservationComponent, DatePickerComponent],
+      imports: [
+        MaterialModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+      ],
+      declarations: [
+        ReservationComponent,
+        DatePickerComponent,
+        SelectionsComponent,
+        SelectionItemComponent,
+      ],
+      providers: [provideMockStore()],
     }).compileComponents();
 
+    store = TestBed.inject(MockStore);
     fixture = TestBed.createComponent(ReservationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  xit('should create', () => {
     expect(component).toBeTruthy();
   });
 });

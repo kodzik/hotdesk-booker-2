@@ -27,6 +27,7 @@ describe('AuthService', () => {
   describe('login', () => {
     it('should return user on provided credentials', () => {
       const userMock: User = {
+        id: 1,
         username: 'test',
       };
 

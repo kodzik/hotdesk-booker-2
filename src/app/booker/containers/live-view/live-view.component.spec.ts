@@ -13,7 +13,8 @@ import { MaterialModule } from 'src/app/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { LiveViewPageActions } from '../../actions';
+import { ReservationFormActions } from '../../actions';
+import { FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
 
 describe('LiveViewComponent', () => {
   let component: LiveViewComponent;
@@ -26,9 +27,10 @@ describe('LiveViewComponent', () => {
         StoreModule.forRoot(fromApp.appReducer),
         MaterialModule,
         NoopAnimationsModule,
+        ReactiveFormsModule,
       ],
       declarations: [LiveViewComponent, ResourceListComponent],
-      providers: [provideMockStore()],
+      providers: [provideMockStore(), FormGroupDirective],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LiveViewComponent);
@@ -55,7 +57,7 @@ describe('LiveViewComponent', () => {
   it('should dispatch reserveResource action', () => {
     component.reserveResource();
     expect(store.dispatch).toHaveBeenCalledWith(
-      LiveViewPageActions.reserveResource()
+      ReservationFormActions.reservationNew()
     );
   });
 });

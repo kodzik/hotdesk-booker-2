@@ -22,15 +22,17 @@ describe('ResourceListReducer', () => {
         const newResources: Resource[] = [
           {
             id: 1,
-            name: 'cosy_desk',
+            name: '1L',
             available: true,
             reserved: false,
+            category: 'workspace',
+            bounds: { lat: 1, lng: 1 },
           },
         ];
         const newState: State = {
           ids: [1],
           entities: {
-            some_id: newResources[0],
+            1: newResources[0],
           },
         };
         const action = ResourceListApiActions.fetchSuccess({

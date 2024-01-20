@@ -3,6 +3,7 @@ import { ResourceListComponent } from './resource-list.component';
 import { provideMockStore } from '@ngrx/store/testing';
 import { MaterialModule } from 'src/app/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
 
 describe('ResourceListComponent', () => {
   let component: ResourceListComponent;
@@ -11,8 +12,8 @@ describe('ResourceListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ResourceListComponent],
-      imports: [MaterialModule, NoopAnimationsModule],
-      providers: [provideMockStore()],
+      imports: [MaterialModule, NoopAnimationsModule, ReactiveFormsModule],
+      providers: [provideMockStore(), FormGroupDirective],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ResourceListComponent);

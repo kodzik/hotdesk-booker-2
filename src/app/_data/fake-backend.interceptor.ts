@@ -7,12 +7,13 @@ import {
   HttpInterceptor,
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
-import { Observable, of, throwError, map } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { delay, materialize, dematerialize } from 'rxjs/operators';
 import * as test_resources from './fake-backend-resources';
 import { users } from './fake-backend-resources';
 import { Reservation } from '../booker/_models/reservation';
 import { v4 as uuidv4 } from 'uuid';
+import { User } from '../auth/models/user';
 
 // array in local storage for registered users
 const usersKey = 'users';
@@ -66,8 +67,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     function getReservations() {
       const reservations = JSON.parse(localStorage.getItem('reservation'));
-      return ok(Object.values(reservations.reservations.entities));
-      // #TODO add error handling
+      return reservations
+        ? ok(Object.values(reservations.reservations.entities))
+        : error('No reservations found.');
     }
 
     function deleteReservation() {
@@ -77,8 +79,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       );
 
       reservationsObj = reservationsObj.filter((x) => x.id !== body);
-      // localStorage.setItem('reservation', JSON.stringify(reservations));
-
       return ok();
     }
 
@@ -180,7 +180,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       })).pipe(materialize(), delay(500), dematerialize());
     }
 
-    function basicDetails(user: any) {
+    function basicDetails(user: User) {
       const { id, username } = user;
       return { id, username };
     }
