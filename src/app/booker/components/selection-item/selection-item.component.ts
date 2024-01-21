@@ -1,6 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { fromReservation } from '../../reducers';
+import {
+  selectDatePicker,
+  selectResourcePicker,
+} from '../../selectors/reservation.selectors';
 import { DatePicker } from '../../_models/datepicker';
 import { Subscription } from 'rxjs';
 import { Resource } from '../../_models/resource';
@@ -21,10 +24,10 @@ export class SelectionItemComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.date$ = this.store
-      .select(fromReservation.selectDatePicker)
+      .select(selectDatePicker)
       .subscribe((date) => (this.datePicker = { ...date }));
     this.resource$ = this.store
-      .select(fromReservation.selectResourcePicker)
+      .select(selectResourcePicker)
       .subscribe((resource) => (this.resourcePicker = { ...resource }));
   }
 

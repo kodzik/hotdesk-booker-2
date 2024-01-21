@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, map, tap } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Reservation } from 'src/app/booker/_models/reservation';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
-import { selectReservations } from '../reducers/reservation.reducers';
+import { selectReservations } from '../selectors/reservation.selectors';
 
 @Injectable({
   providedIn: 'root',

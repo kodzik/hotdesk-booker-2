@@ -1,8 +1,5 @@
-import { ReservationFormDirective } from './reservation-form.directive';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { TestBed } from '@angular/core/testing';
-import { FormGroupDirective } from '@angular/forms';
-import { Actions } from '@ngrx/effects';
 
 describe('ReservationFormDirective', () => {
   let store: MockStore;
@@ -17,8 +14,5 @@ describe('ReservationFormDirective', () => {
     store = TestBed.inject(MockStore);
   });
 
-  xit('should create an instance', () => {
-    // const directive = new ReservationFormDirective(formGroupDirective, store, actions$);
-    // expect(directive).toBeTruthy();
-  });
+  xit('should create an instance', () => {});
 });

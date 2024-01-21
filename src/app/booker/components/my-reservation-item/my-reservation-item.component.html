@@ -11,7 +11,12 @@
     <p>Resource: {{ item.resourceId }}</p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="deleteReservation()">
+    <button
+      id="deleteBtn"
+      mat-raised-button
+      color="primary"
+      (click)="deleteReservation()"
+    >
       Delete
     </button>
   </mat-card-actions>

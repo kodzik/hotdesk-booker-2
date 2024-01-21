@@ -8,7 +8,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as fromReservationActions from '../../actions/reservation.actions';
-import { fromReservation } from '../../reducers';
+import { selectReservationAddLoading } from '../../selectors/reservation.selectors';
 import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
@@ -48,9 +48,7 @@ export class ReservationStepperComponent implements OnInit, OnDestroy {
     this.currentUser$ = this.store
       .select(selectAuthStatusUser)
       .subscribe((user) => (this.currentUser = user));
-    this.isPending$ = this.store.select(
-      fromReservation.selectReservationAddLoading
-    );
+    this.isPending$ = this.store.select(selectReservationAddLoading);
     this.ref.detectChanges();
   }
 

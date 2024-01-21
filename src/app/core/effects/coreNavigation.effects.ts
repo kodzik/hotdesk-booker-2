@@ -16,5 +16,15 @@ export class CoreNavigationEffects {
       ),
     { dispatch: false }
   );
+  redirectFromPageNotFound$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(navigationActions.pageNotFoundRedirect),
+        tap(() => {
+          this.router.navigateByUrl('/booker');
+        })
+      ),
+    { dispatch: false }
+  );
   constructor(private actions$: Actions, private router: Router) {}
 }

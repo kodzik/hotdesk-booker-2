@@ -1,9 +1,4 @@
-import {
-  Action,
-  combineReducers,
-  createFeatureSelector,
-  createSelector,
-} from '@ngrx/store';
+import { Action, combineReducers } from '@ngrx/store';
 import * as fromReservationForm from './reservation-form.reducer';
 import * as fromReservationCollection from './reservation-collection.reducer';
 
@@ -25,37 +20,3 @@ export function reservationReducers(
       fromReservationCollection.reservationCollectionReducer,
   })(state, action);
 }
-
-export const selectReservationState = createFeatureSelector<ReservationState>(
-  reservationFeatureKey
-);
-
-export const selectReservationForm = createSelector(
-  selectReservationState,
-  (state) => state.reservationForm
-);
-
-export const selectDatePicker = createSelector(
-  selectReservationForm,
-  (state) => state.datePicker
-);
-
-export const selectResourcePicker = createSelector(
-  selectReservationForm,
-  (state) => state.resourcePicker
-);
-
-export const selectReservationAddLoading = createSelector(
-  selectReservationForm,
-  fromReservationForm.getPending
-);
-
-export const selectReservationCollection = createSelector(
-  selectReservationState,
-  (state) => state.reservations
-);
-
-export const selectReservations = createSelector(
-  selectReservationCollection,
-  fromReservationCollection.getReservations
-);
