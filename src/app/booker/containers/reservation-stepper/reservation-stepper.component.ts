@@ -35,16 +35,15 @@ export class ReservationStepperComponent implements OnInit, OnDestroy {
   currentUser: Pick<User, 'id'>;
 
   constructor(
-    private _formBuilder: FormBuilder,
+    private formBuilder: FormBuilder,
     private store: Store,
     private router: Router,
     private ref: ChangeDetectorRef
-  ) {
-    this.datePicker = this._formBuilder.group({});
-    this.resourcePicker = this._formBuilder.group({});
-  }
+  ) {}
 
   ngOnInit(): void {
+    this.datePicker = this.formBuilder.group({});
+    this.resourcePicker = this.formBuilder.group({});
     this.currentUser$ = this.store
       .select(selectAuthStatusUser)
       .subscribe((user) => (this.currentUser = user));
@@ -56,6 +55,7 @@ export class ReservationStepperComponent implements OnInit, OnDestroy {
     this.viewModeMap = event;
   }
 
+  // #TODO fix to store navigation
   onAccept() {
     this.router.navigateByUrl('booker/live');
   }
