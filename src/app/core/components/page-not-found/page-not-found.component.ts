@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { navigationActions } from '../../actions';
 
 @Component({
   selector: 'app-page-not-found',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 export class PageNotFoundComponent implements OnInit {
   counter = 5;
 
-  constructor(private router: Router) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.redirect();
@@ -18,7 +19,8 @@ export class PageNotFoundComponent implements OnInit {
   redirect() {
     setInterval(() => {
       this.counter -= 1;
-      if (this.counter === 0) this.router.navigateByUrl('/booker/live');
+      if (this.counter === 0)
+        this.store.dispatch(navigationActions.pageNotFoundRedirect());
     }, 1000);
   }
 }
