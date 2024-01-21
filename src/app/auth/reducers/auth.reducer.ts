@@ -17,4 +17,4 @@ export const reducer = createReducer(
   on(AuthApiActions.signInSuccess, (state, { user }) => ({ ...state, user }))
 );
 
-export const getUser = (state: State) => state.user;
+export const getUser = (state: State): User => state.user;

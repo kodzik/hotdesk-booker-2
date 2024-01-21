@@ -9,7 +9,7 @@ export interface AuthState {
   [fromSignInPage.signInPageFeatureKey]: fromSignInPage.State;
 }
 
-export function reducers(state: AuthState | undefined, action: Action) {
+export function authReducers(state: AuthState | undefined, action: Action) {
   return combineReducers({
     [fromAuth.statusFeatureKey]: fromAuth.reducer,
     [fromSignInPage.signInPageFeatureKey]: fromSignInPage.reducer,

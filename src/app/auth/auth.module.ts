@@ -22,7 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     StoreModule.forFeature({
       name: fromAuth.authFeatureKey,
-      reducer: fromAuth.reducers,
+      reducer: fromAuth.authReducers,
     }),
     EffectsModule.forFeature(AuthEffects),
   ],

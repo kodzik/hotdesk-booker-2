@@ -28,8 +28,8 @@ describe('SignInComponent', () => {
     store = TestBed.inject(MockStore);
     fixture = TestBed.createComponent(SignInComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
     spyOn(store, 'dispatch').and.callFake(() => {});
+    fixture.detectChanges();
   });
 
   it('should create', () => {
