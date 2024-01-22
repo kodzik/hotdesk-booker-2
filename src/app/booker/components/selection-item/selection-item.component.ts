@@ -19,6 +19,7 @@ export class SelectionItemComponent implements OnInit {
 
   constructor(private store: Store) {}
 
+  // #TODO Fix major problem: getting random 'category' when not present in object.
   ngOnInit(): void {
     this.datePicker$ = this.store
       .select(selectDatePicker)
