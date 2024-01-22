@@ -32,8 +32,8 @@ describe('ReservationForm reducer', () => {
   describe('update Form', () => {
     it('should update state', () => {
       const datePicker = {
-        startDate: new Date(),
-        endDate: new Date(),
+        startDate: new Date('2024-01-01T12:34:56.000'),
+        endDate: new Date('2024-01-01T12:34:56.000'),
         startTime: '10:00',
         endTime: '16:00',
       };
@@ -43,8 +43,8 @@ describe('ReservationForm reducer', () => {
       const expectedState: reservationFormState = {
         ...initialState,
         datePicker: {
-          startDate: new Date(),
-          endDate: new Date(),
+          startDate: new Date('2024-01-01T12:34:56.000'),
+          endDate: new Date('2024-01-01T12:34:56.000'),
           startTime: '10:00',
           endTime: '16:00',
         },
