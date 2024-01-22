@@ -1,17 +1,23 @@
 <mat-card style="background-color: brown">
   <mat-card-content>
     <mat-icon fontIcon="calendar_month"></mat-icon>
-    {{ datePicker.startDate | date }} - {{ datePicker.endDate | date }}
+    {{ (datePicker$ | async)?.startDate | date }} -
+    {{ (datePicker$ | async)?.endDate | date }}
   </mat-card-content>
   <mat-card-content>
     <mat-icon fontIcon="schedule"></mat-icon>
-    {{ datePicker.startTime }} - {{ datePicker.endTime }}
+    {{ (datePicker$ | async)?.startTime }} -
+    {{ (datePicker$ | async)?.endTime }}
   </mat-card-content>
   <mat-card-content>
     <mat-icon fontIcon="computer"></mat-icon>
-    <span *ngIf="(resourcePicker | json) != '{}'">
-      {{ resourcePicker.name }},
-      {{ resourcePicker.category }}
+    <span
+      *ngIf="
+        (resourcePicker$ | async)?.name || (resourcePicker$ | async)?.category
+      "
+    >
+      {{ (resourcePicker$ | async).name }},
+      {{ (resourcePicker$ | async).category }}
     </span>
   </mat-card-content>
 </mat-card>

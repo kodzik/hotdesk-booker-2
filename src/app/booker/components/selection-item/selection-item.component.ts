@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
   selectDatePicker,
   selectResourcePicker,
 } from '../../selectors/reservation.selectors';
 import { DatePicker } from '../../_models/datepicker';
-import { Subscription } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Resource } from '../../_models/resource';
 
 @Component({
@@ -13,26 +13,19 @@ import { Resource } from '../../_models/resource';
   templateUrl: './selection-item.component.html',
   styleUrls: ['./selection-item.component.scss'],
 })
-export class SelectionItemComponent implements OnInit, OnDestroy {
-  datePicker: DatePicker;
-  resourcePicker: Resource;
-
-  date$: Subscription;
-  resource$: Subscription;
+export class SelectionItemComponent implements OnInit {
+  datePicker$: Observable<DatePicker>;
+  resourcePicker$: Observable<Resource>;
 
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.date$ = this.store
+    this.datePicker$ = this.store
       .select(selectDatePicker)
-      .subscribe((date) => (this.datePicker = { ...date }));
-    this.resource$ = this.store
-      .select(selectResourcePicker)
-      .subscribe((resource) => (this.resourcePicker = { ...resource }));
-  }
+      .pipe(map((datepicker) => datepicker));
 
-  ngOnDestroy(): void {
-    this.date$.unsubscribe();
-    this.resource$.unsubscribe();
+    this.resourcePicker$ = this.store
+      .select(selectResourcePicker)
+      .pipe(map((resource) => resource));
   }
 }
