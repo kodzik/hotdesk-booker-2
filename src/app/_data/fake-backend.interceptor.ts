@@ -166,7 +166,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     }
 
     function error(message: string) {
-      return throwError(() => ({ error: { message } })).pipe(
+      return throwError(() => message).pipe(
         materialize(),
         delay(500),
         dematerialize()

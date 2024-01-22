@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 import { Credentials } from '../models/credentials';
 import { SignInPageActions } from '../actions/';
 import { AuthSelectors } from '../selectors';
-import { Observable, map } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 
 @Component({
   selector: 'app-sign-in',
@@ -19,7 +19,7 @@ export class SignInComponent implements OnInit {
   //TODO fix view errors
   submitted = false;
 
-  error$: Observable<any>;
+  error$: Observable<string>;
   pending$: Observable<boolean>;
 
   form: UntypedFormGroup = new UntypedFormGroup({});
@@ -32,10 +32,7 @@ export class SignInComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.error$ = this.store
-      .select(AuthSelectors.selectSignInPageError)
-      .pipe(map((error) => (error ? error.error.message : error)));
-
+    this.error$ = this.store.select(AuthSelectors.selectSignInPageError);
     this.pending$ = this.store.select(AuthSelectors.selectSignInPagePending);
   }
 

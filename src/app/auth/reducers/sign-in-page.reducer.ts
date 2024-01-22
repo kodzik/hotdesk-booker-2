@@ -5,7 +5,7 @@ export const signInPageFeatureKey = 'signInPage';
 
 //TODO fix error nested in error
 export interface State {
-  error: { error: { message: string } } | null;
+  error: string | null;
   pending: boolean;
 }
 

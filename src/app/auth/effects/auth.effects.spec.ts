@@ -64,7 +64,7 @@ describe('AuthEffects', () => {
     });
 
     it('should return error on signInFailure', () => {
-      const error = { message: 'Error message' };
+      const error = 'Error message';
 
       const action = SignInPageActions.signIn({ credentials });
       const completion = AuthApiActions.signInFailure({ error });
