@@ -14,6 +14,7 @@ export const resources: Resource[] = [
   {
     id: 2,
     name: '2R',
+    category: 'workspace',
     available: false,
     reserved: true,
     bounds: { lat: 2, lng: 2 },
