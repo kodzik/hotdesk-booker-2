@@ -69,7 +69,7 @@ export const resources: Resource[] = [
   },
   {
     id: 9,
-    name: '7L',
+    name: '9L',
     category: 'workspace',
     available: true,
     reserved: false,
@@ -82,5 +82,21 @@ export const resources: Resource[] = [
     available: false,
     reserved: true,
     bounds: { lat: 10, lng: 10 },
+  },
+  {
+    id: 11,
+    name: '11L',
+    category: 'workspace',
+    available: true,
+    reserved: false,
+    bounds: { lat: 11, lng: 11 },
+  },
+  {
+    id: 12,
+    name: '12R',
+    category: 'workspace',
+    available: false,
+    reserved: true,
+    bounds: { lat: 12, lng: 12 },
   },
 ];
