@@ -7,7 +7,7 @@ import { navigationActions } from '../../actions';
 @Component({
   selector: 'app-navbar',
   template: `
-    <mat-toolbar color="primary">
+    <mat-toolbar class="stickyBar" color="primary">
       <a [routerLink]="['/booker/live']">
         <img id="logo" src="assets/logo.svg" />
       </a>

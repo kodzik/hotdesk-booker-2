@@ -67,4 +67,20 @@ export const resources: Resource[] = [
     reserved: false,
     bounds: { lat: 8, lng: 8 },
   },
+  {
+    id: 9,
+    name: '7L',
+    category: 'workspace',
+    available: true,
+    reserved: false,
+    bounds: { lat: 9, lng: 9 },
+  },
+  {
+    id: 10,
+    name: '10R',
+    category: 'workspace',
+    available: false,
+    reserved: true,
+    bounds: { lat: 10, lng: 10 },
+  },
 ];
