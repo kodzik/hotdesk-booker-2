@@ -1,13 +1,13 @@
-.main-container {
-  min-height: 10vh;
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  background-color: #6366f1;
-}
-
 #logo {
   height: 3.5rem;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.stickyBar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }

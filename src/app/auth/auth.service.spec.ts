@@ -6,7 +6,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { Credentials } from './models/credentials';
-import { User } from '../_models/user';
+import { User } from './models/user';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -27,6 +27,7 @@ describe('AuthService', () => {
   describe('login', () => {
     it('should return user on provided credentials', () => {
       const userMock: User = {
+        id: 1,
         username: 'test',
       };
 

@@ -1,7 +1,6 @@
-import { Resource } from '../_models/resource';
-import { User } from '../_models/user';
+import { Resource } from '../booker/_models/resource';
 
-export const users: User[] = [{ username: 'test', password: 'test' }];
+export const users = [{ id: 1, username: 'test', password: 'test' }];
 
 export const resources: Resource[] = [
   {
@@ -67,5 +66,37 @@ export const resources: Resource[] = [
     available: false,
     reserved: false,
     bounds: { lat: 8, lng: 8 },
+  },
+  {
+    id: 9,
+    name: '9L',
+    category: 'workspace',
+    available: true,
+    reserved: false,
+    bounds: { lat: 9, lng: 9 },
+  },
+  {
+    id: 10,
+    name: '10R',
+    category: 'workspace',
+    available: false,
+    reserved: true,
+    bounds: { lat: 10, lng: 10 },
+  },
+  {
+    id: 11,
+    name: '11L',
+    category: 'workspace',
+    available: true,
+    reserved: false,
+    bounds: { lat: 11, lng: 11 },
+  },
+  {
+    id: 12,
+    name: '12R',
+    category: 'workspace',
+    available: false,
+    reserved: true,
+    bounds: { lat: 12, lng: 12 },
   },
 ];

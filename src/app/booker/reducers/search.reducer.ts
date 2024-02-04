@@ -3,17 +3,17 @@ import { ResourceListApiActions, ResourceListActions } from '../actions';
 
 export const searchFeatureKey = 'search';
 
-export interface State {
+export interface searchState {
   loading: boolean;
   error: string | null;
 }
 
-const initialState: State = {
+export const initialState: searchState = {
   loading: false,
   error: null,
 };
 
-export const reducer = createReducer(
+export const searchReducer = createReducer(
   initialState,
   on(ResourceListActions.queryResources, (state) => ({
     ...state,
@@ -32,4 +32,4 @@ export const reducer = createReducer(
   }))
 );
 
-export const getLoading = (state: State) => state.loading;
+export const getLoading = (state: searchState) => state.loading;

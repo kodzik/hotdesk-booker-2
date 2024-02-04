@@ -4,7 +4,7 @@ export class Resource {
     public name: string,
     public available: boolean,
     public reserved: boolean,
-    public bounds?: { lat: number; lng: number },
-    public category?: string
+    public category: string,
+    public bounds?: { lat: number; lng: number }
   ) {}
 }

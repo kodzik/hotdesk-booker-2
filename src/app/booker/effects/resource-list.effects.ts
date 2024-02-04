@@ -10,7 +10,7 @@ export class ResourceListEffects {
     this.actions$.pipe(
       ofType(ResourceListActions.queryResources),
       switchMap(() =>
-        this.resourceService.getResources().pipe(
+        this.resourceListService.getResources().pipe(
           map((resources) =>
             ResourceListApiActions.fetchSuccess({ payload: resources })
           ),
@@ -24,6 +24,6 @@ export class ResourceListEffects {
 
   constructor(
     private actions$: Actions,
-    private resourceService: ResourceListService
+    private resourceListService: ResourceListService
   ) {}
 }

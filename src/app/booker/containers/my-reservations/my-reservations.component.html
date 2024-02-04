@@ -1,0 +1,6 @@
+<h1>Your reservations</h1>
+<div style="display: flex; flex-direction: row; flex-wrap: wrap">
+  <div *ngFor="let item of reservations$ | async">
+    <app-my-reservation-item [item]="item"></app-my-reservation-item>
+  </div>
+</div>

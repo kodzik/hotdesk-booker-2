@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { AuthEffects } from './auth.effects';
 import { Credentials } from '../models/credentials';
-import { User } from 'src/app/_models/user';
+import { User } from 'src/app/auth/models/user';
 import { AuthApiActions, SignInPageActions } from '../actions';
 import { Observable, of } from 'rxjs';
 import { Actions } from '@ngrx/effects';
@@ -23,6 +23,7 @@ describe('AuthEffects', () => {
   };
 
   const user: User = {
+    id: 1,
     username: 'test_username',
   };
 
@@ -63,7 +64,7 @@ describe('AuthEffects', () => {
     });
 
     it('should return error on signInFailure', () => {
-      const error = { message: 'Error message' };
+      const error = 'Error message';
 
       const action = SignInPageActions.signIn({ credentials });
       const completion = AuthApiActions.signInFailure({ error });
@@ -83,7 +84,7 @@ describe('AuthEffects', () => {
       actions$ = of(action);
 
       effects.signInSuccess$.subscribe(() => {
-        expect(router.navigate).toHaveBeenCalledWith(['/booker/live-view']);
+        expect(router.navigate).toHaveBeenCalledWith(['/booker']);
         done();
       });
     });

@@ -1,18 +1,35 @@
 import { Injectable } from '@angular/core';
-import { Observable, delay, of } from 'rxjs';
-import { DatePicker } from './../_models/datepicker';
-import { Resource } from '../../_models/resource';
+import { Observable, map } from 'rxjs';
+import { Reservation } from 'src/app/booker/_models/reservation';
+import { HttpClient } from '@angular/common/http';
+import { Store } from '@ngrx/store';
+import { selectReservations } from '../selectors/reservation.selectors';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReservationService {
-  constructor() {}
+  constructor(private http: HttpClient, private store: Store) {}
 
-  addReservation(payload: {
-    datePicker: DatePicker;
-    resource: Resource;
-  }): Observable<{ reservationId: string }> {
-    return of({ reservationId: 'elo' }).pipe(delay(1000)); // delay observable to simulate server api call
+  addReservation(
+    reservation: Omit<Reservation, 'id'>
+  ): Observable<Reservation> {
+    return this.http.post<Reservation>('/reservations', reservation);
+  }
+
+  removeReservation(id: string) {
+    return this.http.delete(`/reservations`, { body: id });
+  }
+
+  getUserReservations(userId: number): Observable<Reservation[]> {
+    return this.store
+      .select(selectReservations)
+      .pipe(
+        map((reservations) =>
+          Object.values(reservations).filter(
+            (reservation) => reservation.userId === userId
+          )
+        )
+      );
   }
 }

@@ -1,0 +1,23 @@
+<mat-card style="margin: 1rem; max-width: fit-content">
+  <mat-card-content>
+    <p>
+      Date: {{ item.timeSlot.startDate | date }} -
+      {{ item.timeSlot.endDate | date }}
+    </p>
+    <p>
+      Time: {{ item.timeSlot.startDate | date : "HH:mm" }} -
+      {{ item.timeSlot.endDate | date : "HH:mm" }}
+    </p>
+    <p>Resource: {{ item.resourceId }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      id="deleteBtn"
+      mat-raised-button
+      color="primary"
+      (click)="deleteReservation()"
+    >
+      Delete
+    </button>
+  </mat-card-actions>
+</mat-card>

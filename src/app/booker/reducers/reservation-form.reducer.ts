@@ -1,7 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
-import * as reservationActions from '../actions/reservation.actions';
+import * as fromFormActions from '../actions/reservation-form.actions';
+import * as fromReservationActions from '../actions/reservation.actions';
 import { DatePicker } from '../_models/datepicker';
-import { Resource } from 'src/app/_models/resource';
+import { Resource } from 'src/app/booker/_models/resource';
 
 export const reservationFormFeatureKey = 'reservationForm';
 
@@ -32,19 +33,19 @@ export const initialState: reservationFormState = {
 
 export const reservationFormReducer = createReducer(
   initialState,
-  on(reservationActions.reservationNew, (state) => {
+  on(fromFormActions.reservationNew, (state) => {
     return {
       ...state,
       status: { inProgress: true, pending: false, error: null },
     };
   }),
-  on(reservationActions.updateForm, (state, action) => {
+  on(fromFormActions.updateForm, (state, action) => {
     return {
       ...state,
       [action.payload.path]: action.payload.value,
     };
   }),
-  on(reservationActions.reservationAdd, (state) => {
+  on(fromReservationActions.add, (state) => {
     return {
       ...state,
       status: {
@@ -54,8 +55,8 @@ export const reservationFormReducer = createReducer(
       },
     };
   }),
-  on(reservationActions.reservationSuccess, () => ({ ...initialState })),
-  on(reservationActions.reservationFailure, (state, action) => {
+  on(fromFormActions.reservationSuccess, () => ({ ...initialState })),
+  on(fromFormActions.reservationFailure, (state, action) => {
     return {
       ...state,
       status: {

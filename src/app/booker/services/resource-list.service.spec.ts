@@ -3,13 +3,11 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ResourceListService } from './resource-list.service';
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
-import { mockResources } from 'src/app/_test_data/mock_data';
-import { cold } from 'jasmine-marbles';
+import { mockResources } from 'src/app/_data/mock_data';
 
 describe('ResourceListService', () => {
   let service: ResourceListService;
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
-  let http: HttpClient;
 
   const newMockService = jasmine.createSpyObj<ResourceListService>({
     getResources: of(mockResources),
@@ -37,21 +35,12 @@ describe('ResourceListService', () => {
     expect(service).toBeTruthy();
   });
 
-  // it('should call the search api and return the search results', () => {
-  //   const response = cold('-a|', { a: mockResources });
-  //   const expected = cold('-b|', { b: mockResources });
-  //   http.get = jasmine.createSpyObj(response).and.returnValue();
-
-  //   expect(service.getResources()).toBeObservable(expected);
-  //   expect(http.get).toHaveBeenCalledWith('/resources');
-  // });
-
   it('should get resources', () => {
     const resources = newMockService.getResources();
 
     resources.subscribe((result) => {
       expect(result).toHaveSize(2);
-      expect(result[0].id).withContext('expected id').toBe('test_id_1');
+      expect(result[0].id).withContext('expected id').toBe(1);
       expect(result[1].name).withContext('expected name').toBe('test_name_2');
       expect(result[0].category)
         .withContext('expected category')

@@ -10,7 +10,7 @@ import {
 export const resourcesFeatureKey = 'resources';
 
 export interface ResourcesState {
-  [fromSearch.searchFeatureKey]: fromSearch.State;
+  [fromSearch.searchFeatureKey]: fromSearch.searchState;
   [fromResourceCollection.resourcesFeatureKey]: fromResourceCollection.State;
 }
 
@@ -19,7 +19,7 @@ export function resourceReducers(
   action: Action
 ) {
   return combineReducers({
-    [fromSearch.searchFeatureKey]: fromSearch.reducer,
+    [fromSearch.searchFeatureKey]: fromSearch.searchReducer,
     [fromResourceCollection.resourcesFeatureKey]:
       fromResourceCollection.resourceCollectionReducer,
   })(state, action);

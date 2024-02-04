@@ -7,23 +7,19 @@ import {
   HttpInterceptor,
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
-import { Observable, of, throwError, map } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { delay, materialize, dematerialize } from 'rxjs/operators';
 import * as test_resources from './fake-backend-resources';
-import { Resource } from '../_models/resource';
-import { User } from '../_models/user';
-import { users } from '../_test_data/fake-backend-resources';
+import { users } from './fake-backend-resources';
+import { Reservation } from '../booker/_models/reservation';
+import { v4 as uuidv4 } from 'uuid';
+import { User } from '../auth/models/user';
 
 // array in local storage for registered users
 const usersKey = 'users';
-const resourcesKey = 'resources';
 
 // TODO fix to load users to localstore on init
 // let users: any[] = JSON.parse(localStorage.getItem(usersKey)!) || [];
-// let users: User[] =
-
-let resources: Resource[] =
-  JSON.parse(localStorage.getItem(resourcesKey)!) || [];
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -43,14 +39,18 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           return register();
         case url.endsWith('/users') && method === 'GET':
           return getUsers();
-        case url.endsWith('/resources') && method === 'GET':
-          return getResources();
-        case url.match(/\/resources\/\d+$/) && method === 'GET':
-          return getResourceById();
         case url.match(/\/users\/\d+$/) && method === 'GET':
           return getUserById();
         case url.match(/\/users\/\d+$/) && method === 'PUT':
           return updateUser();
+        case url.endsWith('/resources') && method === 'GET':
+          return getResources();
+        case url.endsWith('/reservations') && method === 'GET':
+          return getReservations();
+        case url.endsWith('/reservations') && method === 'POST':
+          return newReservation(body);
+        case url.endsWith('/reservations') && method === 'DELETE':
+          return deleteReservation();
         // case url.match(/\/users\/\d+$/) && method === 'DELETE':
         //   return deleteUser();
         default:
@@ -60,21 +60,38 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     }
 
     // route functions
-
-    function getResourceById() {
-      const resource = resources.find(
-        (resource) => resource.id === idFromUrl()
-      );
-      if (!resource) return error('Username or password is incorrect');
-      return ok(resource);
+    function getResources() {
+      return ok(test_resources.resources);
+      // #TODO add error handling
     }
 
-    function getResources() {
-      localStorage.setItem(
-        'resources',
-        JSON.stringify(test_resources.resources)
+    function getReservations() {
+      const reservations = JSON.parse(localStorage.getItem('reservation'));
+      return reservations
+        ? ok(Object.values(reservations.reservations.entities))
+        : error('No reservations found.');
+    }
+
+    function deleteReservation() {
+      let reservations = JSON.parse(localStorage.getItem('reservation'));
+      let reservationsObj: any = Object.values(
+        reservations.reservations.entities
       );
-      return ok(resources);
+
+      reservationsObj = reservationsObj.filter((x) => x.id !== body);
+      return ok();
+    }
+
+    function newReservation(body: Omit<Reservation, 'id'>) {
+      const newReservation = new Reservation(
+        uuidv4(),
+        body.userId,
+        body.resourceId,
+        body.timeSlot
+      );
+      return newReservation
+        ? ok(newReservation)
+        : error('Error while creating reservation.');
     }
 
     function authenticate() {
@@ -149,7 +166,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     }
 
     function error(message: string) {
-      return throwError(() => ({ error: { message } })).pipe(
+      return throwError(() => message).pipe(
         materialize(),
         delay(500),
         dematerialize()
@@ -163,9 +180,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       })).pipe(materialize(), delay(500), dematerialize());
     }
 
-    function basicDetails(user: any) {
-      const { id, username, firstName, lastName } = user;
-      return { id, username, firstName, lastName };
+    function basicDetails(user: User) {
+      const { id, username } = user;
+      return { id, username };
     }
 
     function isLoggedIn() {

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { DatePickerComponent } from './date-picker.component';
 import {
   FormGroupDirective,
@@ -25,6 +24,7 @@ describe('DatePickerComponent', () => {
   });
 
   xit('should create', () => {
+    // TypeError: Cannot read properties of null (reading 'addControl')
     expect(component).toBeTruthy();
   });
 });

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { ReservationActions } from '../actions/';
+import { ReservationFormActions } from '../actions/';
 import { tap } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -9,7 +9,7 @@ export class LiveViewPageEffects {
   reserveResource$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(ReservationActions.reservationNew),
+        ofType(ReservationFormActions.reservationNew),
         tap(() => this.router.navigate(['booker/reservation']))
       ),
     { dispatch: false }

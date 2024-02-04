@@ -1,30 +1,36 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { hot, cold } from 'jasmine-marbles';
-import { of, Observable, ReplaySubject, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ResourceListEffects } from './resource-list.effects';
 import * as resourceListActions from '../actions/resource-list.actions';
-import { Resource } from '../../_models/resource';
-import { Action } from '@ngrx/store';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { Resource } from '../_models/resource';
 import { Actions } from '@ngrx/effects';
 import { ResourceListService } from '../services/resource-list.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { mockResources } from '../../_test_data/mock_data';
+import { ResourceListActions, ResourceListApiActions } from '../actions';
 
-describe(`Effect: Attendess`, () => {
-  // let actions$: Observable<Actions>;
-  let actions$: ReplaySubject<any>;
-
+describe(`Effect: resourceQuery`, () => {
   let effects: ResourceListEffects;
-  let service: ResourceListService;
+  let actions$: Observable<any>;
+  let service: any;
 
-  beforeEach(() =>
+  const resources: Resource[] = [
+    {
+      id: 1,
+      name: '1L',
+      available: true,
+      reserved: false,
+      category: 'workspace',
+      bounds: { lat: 1, lng: 1 },
+    },
+  ];
+
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
         ResourceListEffects,
-        ResourceListService,
         provideMockActions(() => actions$),
         {
           provide: ResourceListService,
@@ -33,17 +39,41 @@ describe(`Effect: Attendess`, () => {
           ]),
         },
       ],
-    })
-  );
-
-  beforeEach(() => {
-    // actions$ = TestBed.inject(Actions);
-    service = TestBed.inject(ResourceListService);
+    });
     effects = TestBed.inject(ResourceListEffects);
-    (service.getResources as jasmine.Spy).and.returnValue(of(mockResources));
+    service = TestBed.inject(ResourceListService);
+    actions$ = TestBed.inject(Actions);
   });
 
   describe('resourceQuery', () => {
-    xit('should return true', () => {});
+    it('should return fetchSuccess and resources', () => {
+      const action = ResourceListActions.queryResources();
+      const completion = ResourceListApiActions.fetchSuccess({
+        payload: resources,
+      });
+
+      actions$ = hot('-a---', { a: action });
+      const response = cold('-a|', { a: resources });
+      const expected = cold('--b', { b: completion });
+
+      service.getResources.and.callFake(() => response);
+
+      expect(effects.resourceQuery).toBeObservable(expected);
+    });
+
+    it('should return error on fetchFailure', () => {
+      const error = 'Error message';
+      const action = resourceListActions.queryResources();
+      const completion = ResourceListApiActions.fetchFailure({
+        errorMsg: 'Error message',
+      });
+
+      actions$ = hot('-a---', { a: action });
+      const response = cold('-#|', {}, error);
+      const expected = cold('--b', { b: completion });
+
+      service.getResources.and.callFake(() => response);
+      expect(effects.resourceQuery).toBeObservable(expected);
+    });
   });
 });

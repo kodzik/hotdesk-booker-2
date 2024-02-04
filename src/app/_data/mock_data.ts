@@ -1,8 +1,8 @@
-import { Resource } from '../_models/resource';
+import { Resource } from '../booker/_models/resource';
 
 export const mockResources: Resource[] = [
   {
-    id: 'test_id_1',
+    id: 1,
     name: 'test_name_1',
     category: 'workspace',
     available: false,
@@ -10,7 +10,7 @@ export const mockResources: Resource[] = [
     bounds: { lat: 1, lng: 1 },
   },
   {
-    id: 'test_id_2',
+    id: 2,
     name: 'test_name_2',
     category: 'workspace',
     available: false,

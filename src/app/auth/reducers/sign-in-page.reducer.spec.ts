@@ -37,31 +37,31 @@ describe('signInPageReducer', () => {
     describe('signInFailure action', () => {
       it('should change pending to false and throw an error', () => {
         const state: State = {
-          error: Object({ message: 'Error message' }),
+          error: 'Error message',
           pending: false,
         };
 
         const newState = reducer(
           state,
-          AuthApiActions.signInFailure({ error: { message: 'Error message' } })
+          AuthApiActions.signInFailure({ error: 'Error message' })
         );
 
         expect(state).toEqual(newState);
         expect(state).not.toBe(initialState);
-        expect(state.error).toEqual(Object({ message: 'Error message' }));
+        expect(state.error).toEqual('Error message');
       });
     });
 
   describe('Getter functions', () => {
     describe('getError function', () => {
       const state = {
-        error: Object({ message: 'Error message' }),
+        error: 'Error message',
         pending: true,
       };
       const error = getError(state);
 
       it('should return state error', () => {
-        expect(error).toEqual(Object({ message: 'Error message' }));
+        expect(error).toEqual('Error message');
       });
     });
 

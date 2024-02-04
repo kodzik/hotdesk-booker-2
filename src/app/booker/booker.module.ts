@@ -9,7 +9,6 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { ResourceListEffects } from './effects/resource-list.effects';
 import { MaterialModule } from '../material';
-import { SharedModule } from '../_shared/shared/shared.module';
 import { CommonModule } from '@angular/common';
 
 import { fromResource, fromReservation } from './reducers';
@@ -23,9 +22,15 @@ import { SelectionItemComponent } from './components/selection-item/selection-it
 import { ReservationStepperComponent } from './containers/reservation-stepper/reservation-stepper.component';
 import { MapComponent } from './components/map/map.component';
 import { ReservationFormDirective } from './directives/reservation-form.directive';
-import { FormGroupDirective } from '@angular/forms';
+import {
+  FormGroupDirective,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { ReservationEffects } from './effects/reservation.effects';
 import { CoreModule } from '../core/core.module';
+import { MyReservationsComponent } from './containers/my-reservations/my-reservations.component';
+import { MyReservationItemComponent } from './components/my-reservation-item/my-reservation-item.component';
 
 @NgModule({
   declarations: [
@@ -39,9 +44,13 @@ import { CoreModule } from '../core/core.module';
     ReservationStepperComponent,
     MapComponent,
     ReservationFormDirective,
+    MyReservationsComponent,
+    MyReservationItemComponent,
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BookerRoutingModule,
     StoreModule.forFeature(
@@ -57,7 +66,6 @@ import { CoreModule } from '../core/core.module';
       LiveViewPageEffects,
       ReservationEffects,
     ]),
-    SharedModule,
     MaterialModule,
     CoreModule,
   ],

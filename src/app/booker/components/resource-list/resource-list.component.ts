@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import * as actions from '../../actions/resource-list.actions';
 import { fromResource } from '../../reducers';
-import { Resource } from 'src/app/_models/resource';
+import { Resource } from 'src/app/booker/_models/resource';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   animate,
