@@ -2,8 +2,8 @@ export class ReservationTimeSlot {
   constructor(
     public startDate: Date,
     public endDate: Date,
-    public startTime?: string,
-    public endTime?: string
+    startTime?: string,
+    endTime?: string
   ) {
     if (startTime !== null && endTime !== null)
       this.updateTime(startTime, endTime);

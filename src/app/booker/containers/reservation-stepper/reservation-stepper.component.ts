@@ -60,7 +60,7 @@ export class ReservationStepperComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('booker/live');
   }
 
-  datePickerConverter(datePickerValue: any): ReservationTimeSlot {
+  datePickerConverter(datePickerValue: any) {
     const { startDate, endDate, startTime, endTime }: DatePicker =
       datePickerValue.datePicker;
     return new ReservationTimeSlot(startDate, endDate, startTime, endTime);
